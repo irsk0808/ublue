@@ -52,8 +52,7 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
 COPY build.sh /tmp/build.sh
-COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 as nvidia-akmods
-COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
+COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
 
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
