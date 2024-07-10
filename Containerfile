@@ -35,10 +35,10 @@ ARG SOURCE_IMAGE="silverblue"
 # - stable-zfs
 # - stable-nvidia-zfs
 # - (and the above with testing rather than stable)
-ARG SOURCE_SUFFIX="-asus-nvidia"
+ARG SOURCE_SUFFIX="-asus"
 
 ## SOURCE_TAG arg must be a version built for the specific image: eg, 39, 40, gts, latest
-ARG SOURCE_TAG="latest"
+ARG SOURCE_TAG="40"
 
 
 ### 2. SOURCE IMAGE
@@ -54,23 +54,23 @@ COPY build.sh /tmp/build.sh
 
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
+curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
+    chmod +x /tmp/nvidia-install.sh && \
+    RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
     ostree container commit
 
-# Install kernel-fsync
-COPY --from=fsync /tmp/rpms /tmp/fsync-rpms
+# Install fsync kernel
+COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 as nvidia-akmods
+COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
-    if [[ "${KERNEL_FLAVOR}" =~ "fsync" ]]; then \
-        echo "Will install ${KERNEL_FLAVOR} kernel" && \
-        rpm-ostree override replace \
-        --experimental \
-            /tmp/fsync-rpms/kernel-6*.rpm \
-            /tmp/fsync-rpms/kernel-core-*.rpm \
-            /tmp/fsync-rpms/kernel-modules-*.rpm \
-            /tmp/fsync-rpms/kernel-uki-virt-*.rpm \
-    ; else \
-        echo "will use kernel from ${KERNEL_FLAVOR} images" \
-    ; fi && \
+    curl -Lo /etc/yum.repos.d/copr_fsync.repo https://copr.fedorainfracloud.org/coprs/sentry/kernel-fsync/repo/fedora-${SOURCE_TAG}/sentry-kernel-fsync-fedora-${SOURCE_TAG}.repo && \
+curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
+    chmod +x /tmp/nvidia-install.sh && \
+    RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
+rpm-ostree override replace --experimental --freeze --from repo='copr:copr.fedorainfracloud.org:sentry:kernel-fsync' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
+    && \
     ostree container commit
+
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
 # - All RUN commands must end with ostree container commit
