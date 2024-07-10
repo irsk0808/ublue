@@ -1,8 +1,32 @@
+## If someone other than me manages to see this, I am so sorry if this script hurts to look at. I am in no way, shape or form a programmer of any kind, I am only attempting to create an OS tailored to my needs.
 ## 1. BUILD ARGS
 # These allow changing the produced image by passing different build args to adjust
 # the source from which your image is built.
 # Build args can be provided on the commandline when building locally with:
 #   podman build -f Containerfile --build-arg FEDORA_VERSION=40 -t local-image
+
+# Install kernel-fsync
+COPY --from=fsync /tmp/rpms /tmp/fsync-rpms
+RUN rpm-ostree cliwrap install-to-root / && \
+    if [[ "${KERNEL_FLAVOR}" =~ "fsync" ]]; then \
+        echo "Will install ${KERNEL_FLAVOR} kernel" && \
+        rpm-ostree override replace \
+        --experimental \
+            /tmp/fsync-rpms/kernel-6*.rpm \
+            /tmp/fsync-rpms/kernel-core-*.rpm \
+            /tmp/fsync-rpms/kernel-modules-*.rpm \
+            /tmp/fsync-rpms/kernel-uki-virt-*.rpm \
+    ; else \
+        echo "will use kernel from ${KERNEL_FLAVOR} images" \
+    ; fi && \
+    ostree container commit
+
+# Install desired packages
+RUN rpm-ostree install \
+        neofetch \
+        grub-customizer \
+        gnome-tweaks \
+    ostree container commit
 
 # SOURCE_IMAGE arg can be anything from ublue upstream which matches your desired version:
 # See list here: https://github.com/orgs/ublue-os/packages?repo_name=main
@@ -33,7 +57,7 @@ ARG SOURCE_IMAGE="silverblue"
 # - stable-zfs
 # - stable-nvidia-zfs
 # - (and the above with testing rather than stable)
-ARG SOURCE_SUFFIX="-main"
+ARG SOURCE_SUFFIX="-asus-nvidia"
 
 ## SOURCE_TAG arg must be a version built for the specific image: eg, 39, 40, gts, latest
 ARG SOURCE_TAG="latest"
