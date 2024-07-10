@@ -39,13 +39,12 @@ ARG SOURCE_SUFFIX="-asus"
 
 ## SOURCE_TAG arg must be a version built for the specific image: eg, 39, 40, gts, latest
 ARG SOURCE_TAG="40"
+ARG FEDORA_MAJOR_VERSION='40'
 
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
-COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 as nvidia-akmods
-COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
 
 
 ### 3. MODIFICATIONS
@@ -53,6 +52,8 @@ COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
 COPY build.sh /tmp/build.sh
+COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 as nvidia-akmods
+COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
 
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
