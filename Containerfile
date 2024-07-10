@@ -44,6 +44,8 @@ ARG SOURCE_TAG="40"
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
+COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 as nvidia-akmods
+COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
 
 
 ### 3. MODIFICATIONS
@@ -60,8 +62,6 @@ curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/m
     ostree container commit
 
 # Install fsync kernel
-COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 as nvidia-akmods
-COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     curl -Lo /etc/yum.repos.d/copr_fsync.repo https://copr.fedorainfracloud.org/coprs/sentry/kernel-fsync/repo/fedora-${SOURCE_TAG}/sentry-kernel-fsync-fedora-${SOURCE_TAG}.repo && \
 curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
