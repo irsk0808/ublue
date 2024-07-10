@@ -5,28 +5,6 @@
 # Build args can be provided on the commandline when building locally with:
 #   podman build -f Containerfile --build-arg FEDORA_VERSION=40 -t local-image
 
-# Install kernel-fsync
-COPY --from=fsync /tmp/rpms /tmp/fsync-rpms
-RUN rpm-ostree cliwrap install-to-root / && \
-    if [[ "${KERNEL_FLAVOR}" =~ "fsync" ]]; then \
-        echo "Will install ${KERNEL_FLAVOR} kernel" && \
-        rpm-ostree override replace \
-        --experimental \
-            /tmp/fsync-rpms/kernel-6*.rpm \
-            /tmp/fsync-rpms/kernel-core-*.rpm \
-            /tmp/fsync-rpms/kernel-modules-*.rpm \
-            /tmp/fsync-rpms/kernel-uki-virt-*.rpm \
-    ; else \
-        echo "will use kernel from ${KERNEL_FLAVOR} images" \
-    ; fi && \
-    ostree container commit
-
-# Install desired packages
-RUN rpm-ostree install \
-        neofetch \
-        grub-customizer \
-        gnome-tweaks \
-    ostree container commit
 
 # SOURCE_IMAGE arg can be anything from ublue upstream which matches your desired version:
 # See list here: https://github.com/orgs/ublue-os/packages?repo_name=main
@@ -76,6 +54,22 @@ COPY build.sh /tmp/build.sh
 
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
+    ostree container commit
+
+# Install kernel-fsync
+COPY --from=fsync /tmp/rpms /tmp/fsync-rpms
+RUN rpm-ostree cliwrap install-to-root / && \
+    if [[ "${KERNEL_FLAVOR}" =~ "fsync" ]]; then \
+        echo "Will install ${KERNEL_FLAVOR} kernel" && \
+        rpm-ostree override replace \
+        --experimental \
+            /tmp/fsync-rpms/kernel-6*.rpm \
+            /tmp/fsync-rpms/kernel-core-*.rpm \
+            /tmp/fsync-rpms/kernel-modules-*.rpm \
+            /tmp/fsync-rpms/kernel-uki-virt-*.rpm \
+    ; else \
+        echo "will use kernel from ${KERNEL_FLAVOR} images" \
+    ; fi && \
     ostree container commit
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
