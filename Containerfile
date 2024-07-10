@@ -68,8 +68,7 @@ curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/m
     chmod +x /tmp/nvidia-install.sh && \
     RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
 rpm-ostree override replace --experimental --freeze --from repo='copr:copr.fedorainfracloud.org:sentry:kernel-fsync' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
-FEDORA_MAJOR_VERSION=40 IMAGE_NAME="main" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
-    && \
+#    && \
     ostree container commit
 
 ## NOTES:
