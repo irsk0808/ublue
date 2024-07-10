@@ -39,7 +39,7 @@ ARG SOURCE_SUFFIX="-asus"
 
 ## SOURCE_TAG arg must be a version built for the specific image: eg, 39, 40, gts, latest
 ARG SOURCE_TAG="40"
-ARG FEDORA_MAJOR_VERSION="$40"
+ARG FEDORA_MAJOR_VERSION="40"
 # FEDORA_MAJOR_VERSION=40 IMAGE_NAME="main" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
 
 
