@@ -39,7 +39,7 @@ ARG SOURCE_SUFFIX="-asus"
 
 ## SOURCE_TAG arg must be a version built for the specific image: eg, 39, 40, gts, latest
 ARG SOURCE_TAG="40"
-#FEDORA_MAJOR_VERSION=40 IMAGE_NAME="main" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
+# FEDORA_MAJOR_VERSION=40 IMAGE_NAME="main" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
 
 
 ### 2. SOURCE IMAGE
@@ -68,7 +68,7 @@ curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/m
     chmod +x /tmp/nvidia-install.sh && \
     RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
 rpm-ostree override replace --experimental --freeze --from repo='copr:copr.fedorainfracloud.org:sentry:kernel-fsync' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
-FEDORA_MAJOR_VERSION=40 IMAGE_NAME="main" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
+FEDORA_MAJOR_VERSION="40" IMAGE_NAME="asus" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
 #    && \
     ostree container commit
 
