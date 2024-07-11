@@ -2,7 +2,7 @@ ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="40"
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
-#FROM ghcr.io/ublue-os/fsync-kernel:6.9.7
+FROM ghcr.io/ublue-os/fsync-kernel:6.9.7
 
 COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
 COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
