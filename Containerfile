@@ -9,7 +9,7 @@ COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
 #RUN rpm-ostree cliwrap install-to-root / && \
 #    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-6.9.7-201.fsync.fc40.x86_64.rpm /tmp/fsync-rpms/kernel-core-6.9.7-201.fsync.fc40.x86_64.rpm /tmp/fsync-rpms/kernel-headers-6.9.7-201.fsync.fc40.x86_64.rpm /tmp/fsync-rpms/kernel-modules-6.9.7-201.fsync.fc40.x86_64.rpm /tmp/fsync-rpms/kernel-uki-virt-6.9.7-201.fsync.fc40.x86_64.rpm && \
 #    rpm-ostree override replace --experimental --from=fsync-kernel kernel kernel-headers kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt kernel-devel-matched && \
-    ostree container commit
+#    ostree container commit
 COPY build.sh /tmp/build.sh
 
 RUN rpm-ostree cliwrap install-to-root / && \
