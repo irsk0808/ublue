@@ -17,6 +17,6 @@ RUN rpm-ostree cliwrap install-to-root / && \
     FEDORA_MAJOR_VERSION=40 IMAGE_NAME="main" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
     rpm-ostree override replace --experimental --freeze --from repo='copr:copr.fedorainfracloud.org:sentry:kernel-fsync' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && \
 #    rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:sentry:kernel-fsync' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt kernel-devel-matched && \
-    rpm-ostree install kernel-headers && \
+#    rpm-ostree install kernel-headers && \
     /tmp/build.sh && \
     ostree container commit
