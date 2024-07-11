@@ -6,15 +6,19 @@ At the moment theres only an Asus build.
 
 - To begin, you'll need to switch to the unsigned image to install the
   necessary keys. You can do this by running the following command:
+
   rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue:latest
 
 - And then rebooting your system with:
+
   systemctl reboot
 
 - Afterwards, you can switch to the signed image:
+
   rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue:latest
 
 - And finally, reboot your system again with:
+
   systemctl reboot
   
 Generated using the [[https://github.com/ublue-os/image-template][UBlue
