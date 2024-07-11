@@ -5,7 +5,7 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 FROM ghcr.io/ublue-os/fsync-kernel:6.9.7
 
 COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
-COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
+COPY --from=fsync-kernel:6.9.7 /tmp/rpms /tmp/fsync-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     rpm-ostree override replace \
         --experimental \
