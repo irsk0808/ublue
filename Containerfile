@@ -9,7 +9,7 @@ COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
 COPY build.sh /tmp/build.sh
 
 # Install kernel-fsync
-COPY --from=fsync /tmp/rpms /tmp/fsync-rpms
+COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     rpm-ostree override replace \
     --experimental \
