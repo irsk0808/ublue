@@ -21,5 +21,4 @@ At the moment theres only an Asus build.
 
   systemctl reboot
   
-Generated using the [[https://github.com/ublue-os/image-template][UBlue
-Image Template]].
+Generated using the UBlue Image Template.
