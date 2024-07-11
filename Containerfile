@@ -17,3 +17,6 @@ RUN rpm-ostree cliwrap install-to-root / && \
     FEDORA_MAJOR_VERSION=40 IMAGE_NAME="asus" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
     /tmp/build.sh && \
     ostree container commit
+
+RUN sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau --append=modprobe.blacklist=nouveau --append=nvidia-drm.modeset=1 && \
+    ostree container commit
