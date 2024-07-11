@@ -20,5 +20,5 @@ At the moment theres only an Asus build.
 - And finally, reboot your system again with:
 
   systemctl reboot
-  
-Generated using the UBlue Image Template.
+
+Apologies in advance if this is poorly put together
