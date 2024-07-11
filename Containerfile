@@ -15,9 +15,6 @@ RUN rpm-ostree cliwrap install-to-root / && \
     curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
     FEDORA_MAJOR_VERSION=40 IMAGE_NAME="asus" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
+    rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
     /tmp/build.sh && \
-    ostree container commit
-
-RUN rpm-ostree cliwrap install-to-root / && \
-    rpm-ostree kargs --append=rd.driver.blacklist=nouveau --append=modprobe.blacklist=nouveau --append=nvidia-drm.modeset=1 && \
     ostree container commit
