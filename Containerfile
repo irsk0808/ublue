@@ -7,10 +7,6 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG} as rolls-nvi
 
 COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
 
-### 3. MODIFICATIONS
-## make modifications desired in your image and install packages by modifying the build.sh script
-## the following RUN directive does all the things required to run "build.sh" as recommended.
-
 COPY build.sh /tmp/build.sh
 
 RUN rpm-ostree cliwrap install-to-root / && \
@@ -19,7 +15,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
     curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
     FEDORA_MAJOR_VERSION=40 IMAGE_NAME="main" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
-    rpm-ostree override replace --experimental --freeze --from repo='copr:copr.fedorainfracloud.org:sentry:kernel-fsync' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && \
+    rpm-ostree override replace --experimental --allowerasing --freeze --from repo='copr:copr.fedorainfracloud.org:sentry:kernel-fsync' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && \
     /tmp/build.sh && \
     ostree container commit
 ## NOTES:
