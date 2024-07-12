@@ -28,7 +28,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
     ostree container commit
 
 # Add extras and configs
-RUN curl -Lo /etc/yum.repos.d/ https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+RUN curl -Lo /etc/yum.repos.d/_copr_fiftydinar-gnome-randr-rust.repo https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
 RUN rpm-ostree install \
     gnome-randr-rust \
     neofetch \
