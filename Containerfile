@@ -25,7 +25,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
     ostree container commit
 
 # Install nvidia driver
-COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
+COPY --from=nvidia-akmods:fsync-40 /rpms /tmp/akmods-rpms
 RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
     IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
