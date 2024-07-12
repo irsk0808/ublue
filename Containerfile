@@ -30,8 +30,8 @@ RUN rpm-ostree cliwrap install-to-root / && \
     curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
     FEDORA_MAJOR_VERSION=40 IMAGE_NAME="asus" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
-    NEEDED_KARGS="--append=modprobe.blacklist=nouveau"
-    NEEDED_KARGS="--append=nvidia-drm.modeset=1
+    NEEDED_KARGS="--append=modprobe.blacklist=nouveau" && \
+    NEEDED_KARGS="--append=nvidia-drm.modeset=1 && \
 #    IMAGE_FLAVOR=asus /tmp/build_files/initramfs.sh && \
 #    rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
     /tmp/build.sh && \
