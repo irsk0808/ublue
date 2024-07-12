@@ -31,6 +31,9 @@ RUN rpm-ostree cliwrap install-to-root / && \
 RUN curl -Lo /etc/yum.repos.d/ https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-$(rpm -E %fedora)/fiftydinar-gnome-randr-rust-fedora-$(rpm -E %fedora).repo && \
 RUN rpm-ostree install \
     gnome-randr-rust \
+    neofetch \
+    grub-customizer \
+    gnome-tweaks \
     gnome-shell-extension-user-theme \
     gnome-shell-extension-blur-my-shell && \
     ostree container commit
