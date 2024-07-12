@@ -24,7 +24,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
 
 # Install nvidia driver
 COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
-COPY build_files/initramfs.sh /tmp/build/initramfs.sh
+COPY initramfs.sh /tmp/build/initramfs.sh
 COPY build.sh /tmp/build.sh
 RUN rpm-ostree cliwrap install-to-root / && \
     mkdir -p /var/lib/alternatives && \
