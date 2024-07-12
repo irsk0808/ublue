@@ -33,8 +33,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
     /tmp/build.sh && \
     ostree container commit
 
-# Add extras and configs
-#COPY build.sh /tmp/build.sh
+# Add extra packages
 RUN rpm-ostree install \
     gnome-randr-rust \
     neofetch \
