@@ -31,7 +31,6 @@ RUN rpm-ostree cliwrap install-to-root / && \
     mkdir -p /var/lib/alternatives && \
     curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
-    /tmp/nvidia-install.sh && \
     /tmp/build.sh && \
     chmod +x /tmp/build/initramfs.sh && \
     /tmp/build/initramfs.sh && \
