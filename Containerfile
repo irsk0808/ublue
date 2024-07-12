@@ -6,7 +6,7 @@ FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
 COPY build.sh /tmp/build.sh
 
 # Install kernel-fsync
-COPY --from=fsync-kernel /rpms /tmp/fsync-rpms
+COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     rpm-ostree override replace \
     --experimental \
