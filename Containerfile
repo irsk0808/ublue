@@ -14,7 +14,6 @@ RUN rpm-ostree cliwrap install-to-root / && \
         /tmp/fsync-rpms/kernel-core-*.rpm \
         /tmp/fsync-rpms/kernel-modules-*.rpm \
         /tmp/fsync-rpms/kernel-uki-virt-*.rpm \
-        /tmp/fsync-rpms/kernel-devel-matched-*.rpm && \
     ostree container commit
 
 # Install Nvidia driver
@@ -27,3 +26,5 @@ RUN rpm-ostree cliwrap install-to-root / && \
     FEDORA_MAJOR_VERSION=40 IMAGE_NAME="asus" RPMFUSION_MIRROR="" /tmp/nvidia-install.sh && \
     /tmp/build.sh && \
     ostree container commit
+
+# Add extensions
