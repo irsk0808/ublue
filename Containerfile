@@ -2,9 +2,10 @@ ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-asus"
 ARG SOURCE_TAG="40"
 FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
+FROM ghcr.io/ublue-os/akmods-nvidia:fsync-40
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
-COPY rootfs/ /
+#COPY rootfs/ /
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
@@ -24,16 +25,16 @@ RUN rpm-ostree cliwrap install-to-root / && \
     ostree container commit
 
 # Install nvidia driver
-COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
-COPY initramfs.sh /tmp/build/initramfs.sh
-COPY build.sh /tmp/build.sh
-RUN rpm-ostree cliwrap install-to-root / && \
-    mkdir -p /var/lib/alternatives && \
-    curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
+COPY --from=nvidia-akmods /rpms /tmp/akmods-rpms
+RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
-    /tmp/build.sh && \
-    chmod +x /tmp/build/initramfs.sh && \
-    /tmp/build/initramfs.sh && \
+    IMAGE_NAME="silverblue" /tmp/nvidia-install.sh && \
+    rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
+    ostree container commit
+
+COPY build.sh /tmp/build.sh    
+RUN tmp/build.sh && \
+    mkdir -p /var/lib/alternatives && \
     ostree container commit
 
 # Add extra packages
@@ -44,3 +45,5 @@ RUN rpm-ostree install \
     gnome-tweaks \
     gnome-shell-extension-user-theme && \
     ostree container commit
+
+#RUN rpm-ostree cliwrap install-to-root / && \
