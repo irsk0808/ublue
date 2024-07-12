@@ -3,7 +3,6 @@ ARG SOURCE_SUFFIX="-asus"
 ARG SOURCE_TAG="40"
 FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
-COPY build.sh /tmp/build.sh
 
 # Install kernel-fsync
 COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
@@ -18,6 +17,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
 
 # Install Nvidia driver
 COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
+COPY build.sh /tmp/build.sh
 RUN rpm-ostree cliwrap install-to-root / && \
     mkdir -p /var/lib/alternatives && \
 #    curl -Lo /etc/yum.repos.d/copr_fsync.repo https://copr.fedorainfracloud.org/coprs/sentry/kernel-fsync/repo/fedora-${SOURCE_TAG}/sentry-kernel-fsync-fedora-${SOURCE_TAG}.repo && \
