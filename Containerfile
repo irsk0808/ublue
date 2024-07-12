@@ -29,7 +29,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
 COPY --from=akmods-nvidia /rpms /tmp/akmods-rpms
 RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
-    IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
+    FEDORA_MAJOR_VERSION=40 IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
     rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
     ostree container commit
 
