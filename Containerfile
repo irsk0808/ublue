@@ -4,6 +4,12 @@ ARG SOURCE_TAG="40"
 FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
+# Setup Copr repos
+RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
+    chmod +x /usr/bin/copr && \
+    curl -Lo /etc/yum.repos.d/_copr_fiftydinar-gnome-randr-rust.repo https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    ostree container commit
+
 # Install kernel-fsync
 COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
@@ -29,14 +35,10 @@ RUN rpm-ostree cliwrap install-to-root / && \
 
 # Add extras and configs
 #COPY build.sh /tmp/build.sh
-RUN rpm-ostree install --from repo='copr:copr:copr.fedorainfracloud.org:fiftydinar:gnome-randr-rust' gnome-randr-rust && \
-    rpm-ostree install \
+RUN rpm-ostree install \
+    gnome-randr-rust \
     neofetch \
     grub-customizer \
     gnome-tweaks \
     gnome-shell-extension-user-theme && \
     ostree container commit
-
-#rpm-ostree cliwrap install-to-root / && \
-#    mkdir -p /var/lib/alternatives && \
-#    curl -Lo /etc/yum.repos.d/_copr_fiftydinar-gnome-randr-rust.repo https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
