@@ -32,7 +32,6 @@ RUN rpm-ostree cliwrap install-to-root / && \
     chmod +x /tmp/nvidia-install.sh && \
     chmod +x /tmp/build/initramfs.sh && \
     /tmp/build.sh && \
-    rpm-ostree kargs --append=rd.driver.blacklist=nouveau --append=modprobe.blacklist=nouveau --append=nvidia-drm.modeset=1 && \
     ostree container commit
 
 # Add extra packages
