@@ -6,7 +6,7 @@ FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
 FROM ghcr.io/ublue-os/akmods-nvidia:fsync-40
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
-#COPY rootfs/ /
+COPY rootfs/ /
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
@@ -33,8 +33,11 @@ RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/h
     rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
     ostree container commit
 
-COPY build.sh /tmp/build.sh    
+COPY build.sh /tmp/build.sh
+COPY initramfs.sh /tmp/build/initramfs.sh
 RUN tmp/build.sh && \
+    chmod +x /tmp/build/initramfs.sh && \
+    /tmp/build/initramfs.sh && \
     mkdir -p /var/lib/alternatives && \
     ostree container commit
 
