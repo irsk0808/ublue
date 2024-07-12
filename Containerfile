@@ -48,4 +48,5 @@ RUN rpm-ostree install \
     gnome-shell-extension-user-theme && \
     ostree container commit
 
+#idk im just keeping this line here in case i need it again
 #RUN rpm-ostree cliwrap install-to-root / && \
