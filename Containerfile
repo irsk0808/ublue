@@ -33,11 +33,9 @@ RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/h
     rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
     ostree container commit
 
+# Post install work
 COPY build.sh /tmp/build.sh
-#COPY initramfs.sh /tmp/build/initramfs.sh
 RUN tmp/build.sh && \
-#    chmod +x /tmp/build/initramfs.sh && \
-#    /tmp/build/initramfs.sh && \
     mkdir -p /var/lib/alternatives && \
     ostree container commit
 
