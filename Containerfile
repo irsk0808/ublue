@@ -4,7 +4,7 @@ ARG SOURCE_TAG="40"
 FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
-# Setup Copr repos
+# Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
     curl -Lo /etc/yum.repos.d/_copr_fiftydinar-gnome-randr-rust.repo https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
@@ -22,7 +22,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
         /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
     ostree container commit
 
-# Install Nvidia driver
+# Install nvidia driver
 COPY --from=ghcr.io/ublue-os/akmods-nvidia:fsync-40 /rpms /tmp/akmods-rpms
 COPY build.sh /tmp/build.sh
 RUN rpm-ostree cliwrap install-to-root / && \
