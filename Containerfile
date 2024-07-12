@@ -7,11 +7,12 @@ FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
 # Install kernel-fsync
 COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
 COPY build.sh /tmp/build.sh
-RUN rpm-ostree cliwrap install-to-root / && \
-    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-[0-9]*.rpm && \
-    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-core-*.rpm && \
-    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-modules-*.rpm && \
-    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
+RUN rpm-ostree override replace --experimental --from=fsync-kernel:40-6.9.8 kernel kernel-headers kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt kernel-devel-matched && \
+#RUN rpm-ostree cliwrap install-to-root / && \
+#    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-[0-9]*.rpm && \
+#    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-core-*.rpm && \
+#    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-modules-*.rpm && \
+#    rpm-ostree override replace --experimental /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
     ostree container commit
 
 # Install Nvidia driver
