@@ -30,7 +30,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
     mkdir -p /var/lib/alternatives && \
     curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
-    chmod +x IMAGE_FLAVOR=asus /tmp/build/initramfs.sh && \
+    chmod +x /tmp/build/initramfs.sh && \
 #    rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
     /tmp/build.sh && \
     rpm-ostree kargs --append=rd.driver.blacklist=nouveau --append=modprobe.blacklist=nouveau --append=nvidia-drm.modeset=1 && \
