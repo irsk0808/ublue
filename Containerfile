@@ -1,8 +1,8 @@
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-asus"
 ARG SOURCE_TAG="40"
-FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY build.sh /tmp/build.sh
 
 # Install kernel-fsync
