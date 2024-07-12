@@ -34,6 +34,5 @@ RUN rpm-ostree install \
     neofetch \
     grub-customizer \
     gnome-tweaks \
-    gnome-shell-extension-user-theme \
-    gnome-shell-extension-blur-my-shell && \
+    gnome-shell-extension-user-theme && \
     ostree container commit
