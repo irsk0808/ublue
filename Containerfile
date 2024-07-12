@@ -30,5 +30,5 @@ RUN rpm-ostree cliwrap install-to-root / && \
 # Add extensions
 RUN rpm-ostree install \
     gnome-shell-extension-user-theme \
-    gnome-shell-extension-blur-my-shell \
+    gnome-shell-extension-blur-my-shell && \
     ostree container commit
