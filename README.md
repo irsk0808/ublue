@@ -20,4 +20,4 @@ At the moment theres only an Asus build. For secure boot support, enroll Ublue's
 
   systemctl reboot
 
-Apologies in advance if this is poorly put together, I'm an artist, not a programmer.
+Apologies in advance if this is poorly put together. I'm an artist, not a programmer.
