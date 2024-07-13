@@ -47,7 +47,8 @@ RUN rpm-ostree install \
     gnome-randr-rust \
     neofetch \
     grub-customizer \
-    gnome-tweaks && \
+    gnome-tweaks \
+    xorg-x11-drv-nvidia-cuda \
     ostree container commit
 
 #idk im just keeping this line here in case i need it again
