@@ -39,7 +39,8 @@ RUN tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
     ostree container commit
 
-# TODO: enable custom extensions
+# Enable custom extensions
+RUN dconf update
 
 # Apply custom themes
 RUN glib-compile-schemas /usr/share/glib-2.0/schemas
