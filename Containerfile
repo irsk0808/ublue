@@ -40,7 +40,7 @@ RUN tmp/build.sh && \
     ostree container commit
 
 # Enable custom extensions
-RUN systemctl enable dconf-update.service
+RUN dconf update
 
 # Apply custom themes
 RUN glib-compile-schemas /usr/share/glib-2.0/schemas
