@@ -1,6 +1,6 @@
 # Initial argumenta
 ARG SOURCE_IMAGE="silverblue"
-ARG SOURCE_SUFFIX="-asus"
+ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="40"
 ARG FEDORA_MAJOR_VERSION=40
 
@@ -51,5 +51,6 @@ RUN rpm-ostree install \
     gnome-randr-rust \
     neofetch \
     grub-customizer \
+    logiops && \
     gnome-tweaks && \
     ostree container commit
