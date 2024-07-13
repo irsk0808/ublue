@@ -39,11 +39,8 @@ RUN tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
     ostree container commit
 
-# Enable custom extensions
+# Enable custom themes/extensions
 RUN systemctl enable dconf-update.service
-
-# Apply custom themes
-RUN glib-compile-schemas /usr/share/glib-2.0/schemas
 
 # Add extra packages
 RUN rpm-ostree install \
