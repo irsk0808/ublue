@@ -1,16 +1,12 @@
-# Initial argumenta
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="40"
 ARG FEDORA_MAJOR_VERSION=40
-
-#Import images
 FROM ghcr.io/ublue-os/fsync-kernel:40-6.9.8
 FROM ghcr.io/ublue-os/akmods-nvidia:fsync-40
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY rootfs/ /
-
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
