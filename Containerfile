@@ -53,6 +53,3 @@ RUN rpm-ostree install \
     grub-customizer \
     gnome-tweaks && \
     ostree container commit
-
-#idk im just keeping this line here in case i need it again
-#RUN rpm-ostree cliwrap install-to-root / && \
