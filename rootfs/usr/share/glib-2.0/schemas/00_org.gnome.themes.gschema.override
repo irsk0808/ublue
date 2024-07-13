@@ -2,5 +2,5 @@
 color-scheme='prefer-dark'
 gtk-theme='adw-gtk3-dark'
 
-[org.gnome.shell.extensions.user-theme]
+[org/gnome/shell/extensions/user-theme]
 name='custom-shell'
