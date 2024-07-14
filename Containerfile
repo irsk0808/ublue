@@ -54,7 +54,6 @@ RUN rpm-ostree install \
     logiops \
     gnome-tweaks \
     distrobox \
-    yt-dlp \
-    xorg-x11-drv-nvidia-cuda && \
+    yt-dlp %% \
     ostree container commit
 RUN systemctl enable logid.service
