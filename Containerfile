@@ -55,6 +55,6 @@ RUN rpm-ostree install \
     gnome-tweaks \
     distrobox \
     yt-dlp \
-    akmod-nvidia xorg-x11-drv-nvidia-cuda && \
+    xorg-x11-drv-nvidia-cuda && \
     ostree container commit
 RUN systemctl enable logid.service
