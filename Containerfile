@@ -44,8 +44,7 @@ RUN tmp/build.sh && \
     ostree container commit
 
 # Enable custom themes/extensions
-RUN systemctl enable dconf-update.service && \
-    systemctl enable logid.service
+RUN systemctl enable dconf-update.service
 
 # Add extra packages
 RUN rpm-ostree install \
@@ -57,3 +56,4 @@ RUN rpm-ostree install \
     distrobox \
     yt-dlp && \
     ostree container commit
+RUN systemctl enable logid.service
