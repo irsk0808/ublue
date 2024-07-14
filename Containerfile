@@ -54,6 +54,9 @@ RUN rpm-ostree install \
     logiops \
     gnome-tweaks \
     distrobox \
-    yt-dlp %% \
+    yt-dlp \
+    svt-av1 \
+    svt-vp9 \
+    gstreamer1-vaapi && \
     ostree container commit
 RUN systemctl enable logid.service
