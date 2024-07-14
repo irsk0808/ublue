@@ -1,4 +1,4 @@
-#Main arguments
+# Main arguments
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="40"
