@@ -6,7 +6,7 @@ Desktop build unfinished! For secure boot support, enroll Ublue's MOK keys.
 
 - First, rebase with unsigned image:
 
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
 
 - Reboot:
 
@@ -14,7 +14,7 @@ Desktop build unfinished! For secure boot support, enroll Ublue's MOK keys.
 
 - Then, you can rebase to the signed image:
 
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-desktop:latest
 
 - Reboot again:
 
