@@ -1,3 +1,4 @@
 MOZ_DISABLE_RDD_SANDBOX=1
 LIBVA_DRIVER_NAME=nvidia
 __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
+GST_PLUGIN_FEATURE_RANK=cudadownload:MAX,cudaipcsink:MAX,cudaipcsrc:MAX,cudaupload:MAX,nvautogpuh264enc:MAX,nvautogpuh265enc:MAX,nvav1dec:MAX,nvcudah264enc:MAX,nvcudah265enc:MAX,nvh264dec:MAX,nvh264enc:MAX,nvh265dec:MAX,nvh265enc:MAX,nvjpegdec:MAX,nvmpeg2videodec:MAX,nvmpeg4videodec:MAX,nvmpegvideodec:MAX,nvvp8dec:MAX,nvvp9dec:MAX
