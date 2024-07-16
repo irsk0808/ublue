@@ -20,4 +20,11 @@ For secure boot support, enroll Ublue's MOK keys.
 
   systemctl reboot
 
+To fully utilize hardware video acceleration on Firefox, set the following setting in about:config
+
+- media.ffmpeg.vaapi.enabled=true
+- media.rdd-ffmpeg.enabled=true
+- gfx.x11-egl.force-enabled=true
+
+
 Apologies in advance if this is poorly put together. I'm an artist, not a programmer.
