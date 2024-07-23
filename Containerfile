@@ -18,7 +18,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     curl -Lo /etc/yum.repos.d/_copr_kylegospo-scx_lavd.repo https://copr.fedorainfracloud.org/coprs/kylegospo/scx_lavd/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-scx_lavd-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     ostree container commit
 
-# Install kernel-fsync
+# Install kernel-fsync & lavd
 COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     rpm-ostree override replace \
