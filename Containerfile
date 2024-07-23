@@ -39,7 +39,8 @@ RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/h
 
 # Post install work
 COPY build.sh /tmp/build.sh
-RUN tmp/build.sh && \
+RUN curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
+    tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
     ostree container commit
 
