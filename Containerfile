@@ -43,8 +43,13 @@ RUN tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
     ostree container commit
 
-# Enable custom themes/extensions
-RUN systemctl enable dconf-update.service
+# Install custom themes/extensions
+COPY extensions.sh /tmp/extensions.sh
+RUN chmod +x /tmp/extensions.sh && \
+    /tmp/extensions.sh && \
+    rpm-ostree install adw-gtk3-theme && \
+    systemctl enable dconf-update.service && \
+    ostree container commit
 
 # Add extra packages
 RUN rpm-ostree install \
