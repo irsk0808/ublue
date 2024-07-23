@@ -67,6 +67,7 @@ RUN rpm-ostree install \
     svt-av1 \
     svt-vp9 \
     gstreamer1-vaapi && \
+    i2c-tools && \
     rpm-ostree override replace \
     --experimental \
     --from repo=updates \
