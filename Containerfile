@@ -65,7 +65,7 @@ RUN rpm-ostree install \
     yt-dlp \
     svt-av1 \
     svt-vp9 \
-    gstreamer1-vaapi && \
+    gstreamer1-vaapi \
     i2c-tools && \
     rpm-ostree override replace \
     --experimental \
