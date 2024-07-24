@@ -3,7 +3,7 @@ Description=Enables LAVD scheduler on boot
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/sxc_lavd
+ExecStart=/usr/bin/scx_lavd
 
 [Install]
 WantedBy=multi-user.target
