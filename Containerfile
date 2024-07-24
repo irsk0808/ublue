@@ -29,6 +29,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
         /tmp/fsync-rpms/kernel-modules-*.rpm \
         /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
     rpm-ostree install scx_lavd && \
+    systemctl enable scx-lavd.service && \
     ostree container commit
 
 # Install nvidia driver
