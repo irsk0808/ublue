@@ -1,12 +1,11 @@
 # (WIP) Fedora Silverblue but different
 
-This is just a tiny little attempt at creating a version of Fedora Silverblue that's for the most part tailored towards my own needs. It uses Universal Blue as a base, and contains some included packages, Nvidia drivers, fsync kernel and tweaks like BORE and LAVD.
-
+This is just a tiny little attempt at creating a version of Fedora Silverblue that's for the most part tailored towards my own needs. It uses Universal Blue as a base, and contains some included packages, Nvidia drivers and fsync kernel.
 For secure boot support, enroll Ublue's MOK keys.
 
 - First, rebase with unsigned image:
 
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/pers onalblue-desktop:latest
 
 - Reboot:
 
