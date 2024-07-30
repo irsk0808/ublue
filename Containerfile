@@ -76,4 +76,3 @@ RUN rpm-ostree install \
         || true && \
     ostree container commit
 RUN systemctl enable logid.service
-    ostree container commit
