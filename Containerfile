@@ -60,13 +60,14 @@ RUN rpm-ostree install \
     gnome-randr-rust \
     neofetch \
     grub-customizer \
-    logiops \
+#    logiops \
     gnome-tweaks \
     distrobox \
     yt-dlp \
     svt-av1 \
     svt-vp9 \
     gstreamer1-vaapi \
+    solaar \
     i2c-tools && \
     rpm-ostree override replace \
     --experimental \
@@ -75,4 +76,4 @@ RUN rpm-ostree install \
         gstreamer1-plugins-base \
         || true && \
     ostree container commit
-RUN systemctl enable logid.service
+# RUN systemctl enable logid.service
