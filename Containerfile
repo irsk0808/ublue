@@ -68,6 +68,8 @@ RUN rpm-ostree install \
     svt-vp9 \
     gstreamer1-vaapi \
     solaar \
+    zlib \
+    xcb-util-cursor \
     i2c-tools && \
     rpm-ostree override replace \
     --experimental \
