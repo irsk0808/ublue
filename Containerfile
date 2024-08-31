@@ -45,6 +45,7 @@ COPY build.sh /tmp/build.sh
 RUN curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
+    systemctl enable powersave.service && \
     ostree container commit
 
 # Install custom themes/extensions
