@@ -1,5 +1,5 @@
 [Unit]
-Description=Sets CPU governor to powersave
+Description=Sets CPU governor to performance
 
 [Service]
 Type=oneshot
