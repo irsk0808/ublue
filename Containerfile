@@ -1,7 +1,7 @@
 # Main arguments
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
-ARG SOURCE_TAG="40"
+ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
 ARG FEDORA_MAJOR_VERSION=40
 
 # Import main packages
