@@ -3,7 +3,7 @@ name: build-ublue-custom
 on:
   pull_request:
     branches:
-      - main
+      - laptop
   schedule:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
   push:
