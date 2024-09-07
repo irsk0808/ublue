@@ -1,8 +1,8 @@
 # Main arguments
+ARG FEDORA_MAJOR_VERSION=40
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
-ARG SOURCE_TAG="40"
-ARG FEDORA_MAJOR_VERSION=40
+ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
 
 # Import main packages
 FROM ghcr.io/ublue-os/fsync-kernel:${FEDORA_MAJOR_VERSION}
@@ -15,7 +15,7 @@ COPY rootfs/ /
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
     curl -Lo /etc/yum.repos.d/_copr_fiftydinar-gnome-randr-rust.repo https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-    curl -Lo /etc/yum.repos.d/_copr_kylegospo-scx_lavd.repo https://copr.fedorainfracloud.org/coprs/kylegospo/scx_lavd/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-scx_lavd-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    curl -Lo /etc/yum.repos.d/_copr_ublue-os-staging.repo https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     ostree container commit
 
 # Install kernel-fsync & LAVD
@@ -28,8 +28,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
         /tmp/fsync-rpms/kernel-core-*.rpm \
         /tmp/fsync-rpms/kernel-modules-*.rpm \
         /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
-    rpm-ostree install scx_lavd && \
-    systemctl enable scx-lavd.service && \
+    rpm-ostree install scx-cheds && \
     ostree container commit
 
 # Install nvidia driver
