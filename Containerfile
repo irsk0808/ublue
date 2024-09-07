@@ -28,7 +28,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
         /tmp/fsync-rpms/kernel-core-*.rpm \
         /tmp/fsync-rpms/kernel-modules-*.rpm \
         /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
-    rpm-ostree install scx-cheds && \
+    rpm-ostree install scx-scheds && \
     ostree container commit
 
 # Install nvidia driver
