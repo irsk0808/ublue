@@ -16,6 +16,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     chmod +x /usr/bin/copr && \
     curl -Lo /etc/yum.repos.d/_copr_fiftydinar-gnome-randr-rust.repo https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_ublue-os-staging.repo https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    rpm-ostree install epel-release && \
     ostree container commit
 
 # Install kernel-fsync & SCX
@@ -60,7 +61,7 @@ RUN rpm-ostree install \
     gnome-randr-rust \
     neofetch \
     grub-customizer \
-#    logiops \
+    logiops \
     gnome-tweaks \
     distrobox \
     yt-dlp \
@@ -78,4 +79,4 @@ RUN rpm-ostree install \
         gstreamer1-plugins-base \
         || true && \
     ostree container commit
-# RUN systemctl enable logid.service
+ RUN systemctl enable logid.service
