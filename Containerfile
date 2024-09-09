@@ -78,4 +78,4 @@ RUN rpm-ostree install \
         gstreamer1-plugins-base \
         || true && \
     ostree container commit
- RUN systemctl enable logid.service
+ RUN systemctl enable logid
