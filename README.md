@@ -25,7 +25,7 @@ For secure boot support, do 'ujust enroll-secure-boot-key'.
 
   systemctl reboot
 
-To fully utilize hardware video acceleration on Firefox, set the following setting in about:config
+To fully utilize hardware video acceleration on Firefox, set the following settings in about:config
 
 - media.ffmpeg.vaapi.enabled=true
 - media.rdd-ffmpeg.enabled=true
