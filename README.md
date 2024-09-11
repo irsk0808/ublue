@@ -23,7 +23,7 @@ systemctl reboot
 ```
 
 - Then, you can rebase to the signed image:
-```
+```diff
 rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-desktop:latest
 # for the laptop build
 rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-laptop:latest
