@@ -29,8 +29,8 @@ rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-lapt
 ```
 - Reboot again:
 ```
-  systemctl reboot
- ```
+systemctl reboot
+```
 
 To fully utilize hardware video acceleration on Firefox, set the following settings in about:config
 
