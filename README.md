@@ -7,8 +7,7 @@ There is no "generic" build, just ones that are highly customized for the comput
 - Desktop: Ryzen 9 5900x + RTX 3070
 - Laptop: Lenovo Legion 5 Slim 14", Ryzen 7 7840hs + RTX 4060 Max-Q
 
-For secure boot support, do 'ujust enroll-secure-boot-key'.
-
+# Installing
 - First, rebase with unsigned image:
 ```
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
@@ -30,6 +29,11 @@ rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-lapt
 - Reboot again:
 ```
 systemctl reboot
+```
+
+- For secure boot support
+```
+ujust enroll-secure-boot-key
 ```
 
 To fully utilize hardware video acceleration on Firefox, set the following settings in about:config
