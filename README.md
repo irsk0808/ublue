@@ -13,6 +13,10 @@ For secure boot support, do 'ujust enroll-secure-boot-key'.
 ```
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
 ```
+Or
+```
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-laptop:latest
+```
 
 - Reboot:
 
