@@ -5,7 +5,7 @@ This is just a tiny little attempt at creating a version of Fedora Silverblue th
 There is no "generic" build, just ones that are highly customized for the computers I own.
 
 - Desktop: Ryzen 9 5900x + RTX 3070
-- Laptop: Lenovo Legion 5 Slim 14", Ryzen 7 7840hs + RTX 4060 Max-Q
+- Laptop: Lenovo Legion 5 Slim 14", Ryzen 7 7840HS + RTX 4060 Max-Q
 
 # Installing
 - First, rebase with unsigned image:
