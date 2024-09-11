@@ -10,8 +10,9 @@ There is no "generic" build, just ones that are highly customized for the comput
 For secure boot support, do 'ujust enroll-secure-boot-key'.
 
 - First, rebase with unsigned image:
-
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
+```
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
+```
 
 - Reboot:
 
