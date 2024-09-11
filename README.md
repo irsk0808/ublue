@@ -31,6 +31,7 @@ To fully utilize hardware video acceleration on Firefox, set the following setti
 - media.rdd-ffmpeg.enabled=true
 - gfx.x11-egl.force-enabled=true
 
+[!NOTE]
 For the laptop build, only the first setting is necessary.
 
 Apologies in advance if this is poorly put together. I'm an artist, not a programmer.
