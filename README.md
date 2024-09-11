@@ -33,10 +33,11 @@ systemctl reboot
 ```
 
 To fully utilize hardware video acceleration on Firefox, set the following settings in about:config
-
-- media.ffmpeg.vaapi.enabled=true
-- media.rdd-ffmpeg.enabled=true
-- gfx.x11-egl.force-enabled=true
+```
+media.ffmpeg.vaapi.enabled=true
+media.rdd-ffmpeg.enabled=true
+gfx.x11-egl.force-enabled=true
+```
 
 > [!NOTE]
 > For the laptop build, only the first setting is necessary.
