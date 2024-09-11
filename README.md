@@ -2,7 +2,7 @@
 
 This is just a tiny little attempt at creating a version of Fedora Silverblue that's for the most part tailored towards my own needs. It uses Universal Blue as a base, and contains some included packages, Nvidia drivers and fsync kernel.
 
-![test](screenshots/image.png)
+![woah lol](screenshots/image.png)
 
 There is no "generic" build, just ones that are highly customized for the computers I own.
 
