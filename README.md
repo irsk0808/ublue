@@ -12,23 +12,25 @@ For secure boot support, do 'ujust enroll-secure-boot-key'.
 - First, rebase with unsigned image:
 ```
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
-```
-For the laptop build:
-```
+# For the laptop build
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-laptop:latest
 ```
 
 - Reboot:
-
+```
   systemctl reboot
+```
 
 - Then, you can rebase to the signed image:
-
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-desktop:latest
-
+```
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-desktop:latest
+# For the laptop build
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-laptop:latest
+```
 - Reboot again:
-
+```
   systemctl reboot
+```
 
 To fully utilize hardware video acceleration on Firefox, set the following settings in about:config
 
