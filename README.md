@@ -11,7 +11,7 @@ There is no "generic" build, just ones that are highly customized for the comput
 
 # Installing
 - First, rebase with unsigned image:
-```
+```diff
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
 # for the laptop build
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-laptop:latest
