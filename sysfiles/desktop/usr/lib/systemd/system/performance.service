@@ -1,0 +1,9 @@
+[Unit]
+Description=Sets CPU governor to performance
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cpupower frequency-set --governor performance
+
+[Install]
+WantedBy=multi-user.target

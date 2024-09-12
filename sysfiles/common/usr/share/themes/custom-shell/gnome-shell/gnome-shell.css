@@ -1,0 +1,16 @@
+.popup-menu-content, .candidate-popup-content {
+	border: 2px solid rgba(128, 128, 128, 0.5);
+	box-shadow: 0 14px 28px 3px rgba(0, 0, 0, 0.45); }
+
+.notification-banner {
+	border: 2px solid rgba(128, 128, 128, 0.5);
+	box-shadow: 0 14px 28px 3px rgba(0, 0, 0, 0.45); }
+
+.prompt-dialog {
+	border: 2px solid rgba(128, 128, 128, 0.5);
+	box-shadow: 0 14px 28px 3px rgba(0, 0, 0, 0.8); }
+	
+.switcher-list {
+  border: 2px solid rgba(128, 128, 128, 0.5);
+	box-shadow: 0 14px 28px 3px rgba(0, 0, 0, 0.45); }
+
