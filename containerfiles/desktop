@@ -9,7 +9,8 @@ FROM ghcr.io/ublue-os/fsync-kernel:${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/akmods-nvidia:fsync-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
-COPY rootfs/ /
+COPY sysfiles/common/ /
+COPY sysfiles/desktop/ /
 
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
