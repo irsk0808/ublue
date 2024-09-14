@@ -4,7 +4,7 @@ This is just a tiny little attempt at creating a version of Fedora Silverblue th
 
 ![woah lol](screenshots/image2.png)
 
-There is no "generic" build, just ones that are highly customized for the computers I own.
+Primarily customized for the computers I own, but there is an untested "generic" build.
 
 - Desktop: Ryzen 9 5900x + RTX 3070
 - Laptop: Lenovo Legion 5 Slim 14", Ryzen 7 7840HS + RTX 4060 Max-Q
@@ -12,8 +12,10 @@ There is no "generic" build, just ones that are highly customized for the comput
 # Installing
 - First, rebase with unsigned image:
 ```diff
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue:latest
+# for desktop build
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-desktop:latest
-# for the laptop build
+# for laptop build
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/clc1101/personalblue-laptop:latest
 ```
 
@@ -24,8 +26,10 @@ systemctl reboot
 
 - Then, you can rebase to the signed image:
 ```diff
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue:latest
+# for desktop build
 rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-desktop:latest
-# for the laptop build
+# for laptop build
 rpm-ostree rebase ostree-image-signed:docker://ghcr.io/clc1101/personalblue-laptop:latest
 ```
 - Reboot again:
@@ -46,6 +50,6 @@ gfx.x11-egl.force-enabled=true
 ```
 
 > [!NOTE]
-> For the laptop build, only the first setting is necessary.
+> 2nd and 3rd settings are only necessary for the desktop build.
 
 Apologies in advance if this is poorly put together. I'm an artist, not a programmer.
