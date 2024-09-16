@@ -61,7 +61,7 @@ RUN rpm-ostree install \
     gstreamer1-vaapi \
     i2c-tools \
     zlib \
-    xcb-util-cursor \
+    xcb-util-cursor && \
     rpm-ostree override replace \
     --experimental \
     --from repo=updates \
