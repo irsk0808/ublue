@@ -6,7 +6,7 @@ ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
 
 # Import main packages
 FROM ghcr.io/ublue-os/fsync-kernel:${FEDORA_MAJOR_VERSION}
-FROM ghcr.io/ublue-os/akmods-nvidia:fsync-${FEDORA_MAJOR_VERSION}
+FROM ghcr.io/ublue-os/akmods-nvidia-open:fsync-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
@@ -37,7 +37,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
     ostree container commit
 
 # Install nvidia driver
-COPY --from=akmods-nvidia /rpms /tmp/akmods-rpms
+COPY --from=akmods-nvidia-open /rpms /tmp/akmods-rpms
 RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
     chmod +x /tmp/nvidia-install.sh && \
     FEDORA_MAJOR_VERSION=${FEDORA_MAJOR_VERSION} IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
