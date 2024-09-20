@@ -12,7 +12,7 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY sysfiles/common/ /
 COPY sysfiles/laptop/ /
 
-# TESTING, trying to update packages which usually cause build failures
+# Update packages which often cause build fails
 RUN rpm-ostree override replace \
     --experimental \
     --from repo=updates \
