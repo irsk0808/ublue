@@ -92,6 +92,7 @@ RUN rpm-ostree install \
     gstreamer-ffmpeg \
     gstreamer1-libav \
     gstreamer-plugins-ugly \
+    gstreamer-plugins-bad \
     i2c-tools \
 #    solaar \
     zlib \
