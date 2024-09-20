@@ -85,16 +85,13 @@ RUN rpm-ostree install \
     gstreamer1-plugins-bad-free-opencv \
     gstreamer1-plugins-bad-free-libs \
     gstreamer1-plugins-bad-free-extras \
-    gstreamer1-plugins-bad-nonfree \
     gstreamer1-plugin-gtk4 \
     gstreamer1-plugins-ugly-free \
     gstreamer1-plugins-bad-freeworld \
     gstreamer-plugins-espeak \
     gstreamer-ffmpeg \
     gstreamer1-libav \
-    gstreamer-plugins-base \
     gstreamer-plugins-ugly \
-    gstreamer \
     i2c-tools \
 #    solaar \
     zlib \
