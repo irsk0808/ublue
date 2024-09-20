@@ -74,30 +74,20 @@ RUN chmod +x /tmp/videoaccel.sh && \
     /tmp/videoaccel.sh && \
     ostree container commit
 
+# Install shared set of packages
+COPY cmnpkgs.sh /tmp/cmnpkgs.sh
+RUN chmod +x /tmp/cmnpkgs.sh && \
+    /tmp/cmnpkgs.sh && \
+    ostree container commit
+
 # Add extra packages
 RUN rpm-ostree install \
-    gnome-randr-rust \
-    polkit \
-    neofetch \
-    grub-customizer \
     logiops \
-    gnome-tweaks \
-    distrobox \
-    yt-dlp \
-    i2c-tools \
-#    solaar \
     zlib \
-    xcb-util-cursor \
     fprintd && \
 #    dkms \
 #    dkms-LenovoLegionLinux \
 #    python-LenovoLegionLinux && \
-#    rpm-ostree override replace \
-#    --experimental \
-#    --from repo=updates \
-#        gstreamer1 \
-#        gstreamer1-plugins-base \
-#        || true && \
     ostree container commit
 RUN systemctl enable logid
 
