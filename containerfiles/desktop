@@ -72,18 +72,15 @@ RUN chmod +x /tmp/videoaccel.sh && \
     /tmp/videoaccel.sh && \
     ostree container commit
 
+# Install shared set of packages
+COPY cmnpkgs.sh /tmp/cmnpkgs.sh
+RUN chmod +x /tmp/cmnpkgs.sh && \
+    /tmp/cmnpkgs.sh && \
+    ostree container commit
+
 # Add extra packages
 RUN rpm-ostree install \
-    gnome-randr-rust \
-    neofetch \
-    grub-customizer \
     logiops \
-    gnome-tweaks \
-    distrobox \
-    yt-dlp \
     solaar \
-    zlib \
-    xcb-util-cursor \
-    i2c-tools && \
     ostree container commit
  RUN systemctl enable logid
