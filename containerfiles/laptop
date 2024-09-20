@@ -18,6 +18,7 @@ RUN rpm-ostree override replace \
     --from repo=updates \
         llvm-libs \
         || true && \
+    ostree container commit
 
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
