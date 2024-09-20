@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # New file dedicated just for media acceleration
-rpmostree install \
+rpm-ostree install \
   gstreamer \
   gstreamer-plugins-base \
   gstreamer-plugins-ugly \
