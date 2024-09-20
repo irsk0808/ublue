@@ -12,6 +12,13 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY sysfiles/common/ /
 COPY sysfiles/laptop/ /
 
+# TESTING, trying to update packages which usually cause build failures
+RUN rpm-ostree override replace \
+    --experimental \
+    --from repo=updates \
+        llvm-libs \
+        || true && \
+
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
@@ -73,6 +80,12 @@ RUN rpm-ostree install \
     svt-av1 \
     svt-vp9 \
     gstreamer1-vaapi \
+    gstreamer1-plugin-openh264 \
+    gstreamer1-plugins-bad-free-opencv \
+    gstreamer1-plugins-bad-free-libs \
+    gstreamer1-plugins-bad-free-extras \
+    gstreamer1-plugin-gtk4 \
+    gstreamer1-plugins-ugly-free \
     i2c-tools \
 #    solaar \
     zlib \
@@ -81,12 +94,12 @@ RUN rpm-ostree install \
 #    dkms \
 #    dkms-LenovoLegionLinux \
 #    python-LenovoLegionLinux && \
-    rpm-ostree override replace \
-    --experimental \
-    --from repo=updates \
-        gstreamer1 \
-        gstreamer1-plugins-base \
-        || true && \
+#    rpm-ostree override replace \
+#    --experimental \
+#    --from repo=updates \
+#        gstreamer1 \
+#        gstreamer1-plugins-base \
+#        || true && \
     ostree container commit
 RUN systemctl enable logid
 
