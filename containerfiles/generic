@@ -47,6 +47,12 @@ RUN chmod +x /tmp/extensions.sh && \
     systemctl enable dconf-update.service && \
     ostree container commit
 
+# Install media encoders
+COPY videoaccel.sh /tmp/videoaccel.sh
+RUN chmod +x /tmp/videoaccel.sh && \
+    /tmp/videoaccel.sh && \
+    ostree container commit
+
 # Add extra packages
 RUN rpm-ostree install \
     gnome-randr-rust \
@@ -55,16 +61,7 @@ RUN rpm-ostree install \
     gnome-tweaks \
     distrobox \
     yt-dlp \
-    svt-av1 \
-    svt-vp9 \
-    gstreamer1-vaapi \
     i2c-tools \
     zlib \
     xcb-util-cursor && \
-    rpm-ostree override replace \
-    --experimental \
-    --from repo=updates \
-        gstreamer1 \
-        gstreamer1-plugins-base \
-        || true && \
     ostree container commit
