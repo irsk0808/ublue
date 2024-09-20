@@ -53,15 +53,8 @@ RUN chmod +x /tmp/videoaccel.sh && \
     /tmp/videoaccel.sh && \
     ostree container commit
 
-# Add extra packages
-RUN rpm-ostree install \
-    gnome-randr-rust \
-    neofetch \
-    grub-customizer \
-    gnome-tweaks \
-    distrobox \
-    yt-dlp \
-    i2c-tools \
-    zlib \
-    xcb-util-cursor && \
+# Install shared set of packages
+COPY cmnpkgs.sh /tmp/cmnpkgs.sh
+RUN chmod +x /tmp/cmnpkgs.sh && \
+    /tmp/cmnpkgs.sh && \
     ostree container commit
