@@ -1,1 +1,0 @@
-GST_PLUGIN_FEATURE_RANK=vaav1dec:MAX,vaav1enc:MAX,vacompositor:MAX,vadeinterlace:MAX,vah264dec:MAX,vah264enc:MAX,vah265dec:MAX,vah265enc:MAX,vajpegdec:MAX,vapostproc:MAX,vavp9dec:MAX
