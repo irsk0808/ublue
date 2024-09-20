@@ -83,7 +83,6 @@ RUN chmod +x /tmp/cmnpkgs.sh && \
 # Add extra packages
 RUN rpm-ostree install \
     logiops \
-    zlib \
     fprintd && \
 #    dkms \
 #    dkms-LenovoLegionLinux \
