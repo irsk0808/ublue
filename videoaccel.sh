@@ -11,9 +11,11 @@ gstreamer1-plugins-bad-free-libs \
 gstreamer1-plugins-bad-free-extras \
 gstreamer1-plugin-gtk4 \
 gstreamer1-plugins-ugly-free \
+gstreamer1-plugins-ugly \
 gstreamer1-plugins-bad-freeworld \
+gstreamer1-libav \
 gstreamer-plugins-espeak \
 gstreamer-ffmpeg \
-gstreamer1-libav \
 gstreamer-plugins-ugly \
-gstreamer-plugins-bad
+gstreamer-plugins-bad \
+gstreamer-vaapi
