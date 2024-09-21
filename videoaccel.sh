@@ -17,5 +17,4 @@ gstreamer1-libav \
 gstreamer-plugins-espeak \
 gstreamer-ffmpeg \
 gstreamer-plugins-ugly \
-gstreamer-plugins-bad \
-gstreamer-vaapi
+gstreamer-plugins-bad
