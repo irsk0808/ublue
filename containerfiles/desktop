@@ -81,7 +81,7 @@ RUN chmod +x /tmp/cmnpkgs.sh && \
 
 # Add extra packages
 RUN rpm-ostree install \
-    logiops \
-    solaar && \
+    logiops && \
+#    solaar && \
     ostree container commit
- RUN systemctl enable logid
+RUN systemctl enable logid
