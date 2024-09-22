@@ -3,6 +3,7 @@
 ### Separate file for this part of the build process. The goal is to unify parts of the build process by making modules that are used across several builds
 rpm-ostree install \
 gnome-randr-rust \
+gnome-monitor-config \
 polkit \
 neofetch \
 fastfetch \
