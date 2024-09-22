@@ -37,7 +37,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
         /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
     rpm-ostree install scx-scheds && \
     systemctl enable scx && \
-    sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
+#    sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     ostree container commit
 
 # Post install work
