@@ -6,6 +6,7 @@ gnome-randr-rust \
 polkit \
 neofetch \
 fastfetch \
+cowsay \
 grub-customizer \
 gnome-tweaks \
 distrobox \
