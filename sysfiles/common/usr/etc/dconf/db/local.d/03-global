@@ -5,4 +5,4 @@ logout-prompt=false
 experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
 
 [org/gnome/desktop/wm/preferences] 
-button-layout=['appmenu:minimize,maximize,close']
+button-layout='appmenu:minimize,maximize,close'
