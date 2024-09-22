@@ -52,14 +52,14 @@ RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/h
     ostree container commit
 
 # Post install work
-COPY build.sh /tmp/build.sh
+COPY scripts/build.sh /tmp/build.sh
 RUN tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
     systemctl enable performance.service && \
     ostree container commit
 
 # Install custom themes/extensions
-COPY extensions.sh /tmp/extensions.sh
+COPY scripts/extensions.sh /tmp/extensions.sh
 RUN chmod +x /tmp/extensions.sh && \
     /tmp/extensions.sh && \
     rpm-ostree install adw-gtk3-theme && \
@@ -67,13 +67,13 @@ RUN chmod +x /tmp/extensions.sh && \
     ostree container commit
 
 # Install media encoders
-COPY videoaccel.sh /tmp/videoaccel.sh
+COPY scripts/videoaccel.sh /tmp/videoaccel.sh
 RUN chmod +x /tmp/videoaccel.sh && \
     /tmp/videoaccel.sh && \
     ostree container commit
 
 # Install shared set of packages
-COPY cmnpkgs.sh /tmp/cmnpkgs.sh
+COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
 RUN chmod +x /tmp/cmnpkgs.sh && \
     /tmp/cmnpkgs.sh && \
     ostree container commit
