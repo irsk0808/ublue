@@ -10,6 +10,14 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
 
+# Update packages which often cause build fails
+RUN rpm-ostree override replace \
+    --experimental \
+    --from repo=updates \
+        llvm-libs \
+        || true && \
+    ostree container commit
+
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
