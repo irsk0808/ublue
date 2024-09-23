@@ -18,12 +18,12 @@ glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
 rm -r /tmp/tmpdir
 
 # Rounded window corners
-wget -P /tmp https://extensions.gnome.org/extension-data/rounded-window-cornersfxgn.v3.shell-extension.zip
-unzip -d /tmp/tmpdir /tmp/rounded-window-cornersfxgn.v3.shell-extension.zip
-UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
-cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
-glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
-rm -r /tmp/tmpdir
+#wget -P /tmp https://extensions.gnome.org/extension-data/rounded-window-cornersfxgn.v3.shell-extension.zip
+#unzip -d /tmp/tmpdir /tmp/rounded-window-cornersfxgn.v3.shell-extension.zip
+#UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
+#cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
+#glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
+#rm -r /tmp/tmpdir
 
 # Appindicator
 wget -P /tmp https://extensions.gnome.org/extension-data/appindicatorsupportrgcjonas.gmail.com.v58.shell-extension.zip
