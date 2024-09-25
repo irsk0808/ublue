@@ -155,7 +155,7 @@ jobs:
       # Make ISO
       - name: Build Container Installer
         uses: JasonN3/build-container-installer@v1.2.2
-          id: build
+        id: build
         with:
           arch: ${{ env.ARCH}}
           image_name: ${{ env.IMAGE_NAME}}
