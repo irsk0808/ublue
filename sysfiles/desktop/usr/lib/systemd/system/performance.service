@@ -3,7 +3,7 @@ Description=Sets CPU governor to performance
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cpupower frequency-set --governor performance
+ExecStart=/usr/bin/cpupower frequency-set -g performance
 
 [Install]
 WantedBy=multi-user.target
