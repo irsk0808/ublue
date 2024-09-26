@@ -17,7 +17,7 @@ xcb-util-cursor \
 i2c-tools
 
 # Pop in Valve's patched stuff
-rpm-ostree override replace --experimental\
+rpm-ostree override replace --experimental \
 --from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
 mesa-filesystem \
 mesa-libxatracker \
