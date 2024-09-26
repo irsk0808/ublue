@@ -21,14 +21,6 @@ rpm-ostree override remove \
 mesa-va-drivers-freeworld && \
 rpm-ostree override replace --experimental \
 --from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
-mesa-filesystem \
-mesa-libxatracker \
-mesa-libglapi \
-mesa-dri-drivers \
-mesa-libgbm \
-mesa-libEGL \
-mesa-vulkan-drivers \
-mesa-libGL \
 pipewire \
 pipewire-alsa \
 pipewire-gstreamer \
