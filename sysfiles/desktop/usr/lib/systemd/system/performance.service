@@ -3,6 +3,7 @@ Description=Sets CPU governor to performance
 
 [Service]
 Type=oneshot
+ExecStartPre=/bin/sleep 10
 ExecStart=/usr/bin/cpupower frequency-set -g performance
 
 [Install]
