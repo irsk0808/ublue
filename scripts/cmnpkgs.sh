@@ -17,6 +17,8 @@ xcb-util-cursor \
 i2c-tools
 
 # Pop in Valve's patched stuff
+rpm-ostree override remove \
+mesa-va-drivers-freeworld && \
 rpm-ostree override replace --experimental \
 --from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
 mesa-filesystem \
@@ -40,4 +42,6 @@ bluez \
 bluez-obexd \
 bluez-cups \
 bluez-libs \
-xorg-x11-server-Xwayland
+xorg-x11-server-Xwayland && \
+rpm-ostree install \
+mesa-va-drivers-freeworld
