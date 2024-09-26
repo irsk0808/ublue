@@ -11,11 +11,9 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY sysfiles/common/ /
 
 # Update packages which often cause build fails
-RUN rpm-ostree override replace \
-    --experimental \
-    --from repo=updates \
-        llvm-libs \
-        || true && \
+COPY scripts/base.sh /tmp/base.sh
+RUN chmod +x /tmp/base.sh && \
+    /tmp/base.sh && \
     ostree container commit
 
 # Setup copr repos
