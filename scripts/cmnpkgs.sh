@@ -14,7 +14,8 @@ distrobox \
 yt-dlp \
 zlib \
 xcb-util-cursor \
-i2c-tools
+i2c-tools \
+alacarte
 
 # Pop in Valve's patched stuff
 rpm-ostree override remove \
