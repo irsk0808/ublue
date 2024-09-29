@@ -15,7 +15,8 @@ yt-dlp \
 zlib \
 xcb-util-cursor \
 i2c-tools \
-alacarte
+alacarte \
+libnsl
 
 # Pop in Valve's patched stuff
 rpm-ostree override remove \
