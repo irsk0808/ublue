@@ -60,6 +60,12 @@ RUN tmp/build.sh && \
     systemctl enable powersave.service && \
     ostree container commit
 
+# Install laptop specific extensions
+COPY scripts/extensions_laptop.sh /tmp/extensions_laptop.sh
+RUN chmod +x /tmp/extensions_laptop.sh && \
+    /tmp/extensions_laptop.sh && \
+    ostree container commit
+
 # Install custom themes/extensions
 COPY scripts/extensions.sh /tmp/extensions.sh
 RUN chmod +x /tmp/extensions.sh && \
