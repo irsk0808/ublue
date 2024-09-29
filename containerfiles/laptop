@@ -71,6 +71,7 @@ COPY scripts/extensions.sh /tmp/extensions.sh
 RUN chmod +x /tmp/extensions.sh && \
     /tmp/extensions.sh && \
     rpm-ostree install adw-gtk3-theme && \
+    sed -i "s/enabled-extensions=\['appindicatorsupport@rgcjonas.gmail.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'quick-settings-audio-panel@rayzeq.github.io', 'fullscreen-avoider@noobsai.github.com', 'grand-theft-focus@zalckos.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'legacyschemeautoswitcher@joshimukul29.gmail.com'\]/enabled-extensions=\['appindicatorsupport@rgcjonas.gmail.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'quick-settings-audio-panel@rayzeq.github.io', 'fullscreen-avoider@noobsai.github.com', 'grand-theft-focus@zalckos.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'legacyschemeautoswitcher@joshimukul29.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'azwallpaper@azwallpaper.gitlab.com'\]/" /usr/etc/dconf/db/local.d/01-extensions && \
     systemctl enable dconf-update.service && \
     ostree container commit
 
