@@ -63,6 +63,7 @@ COPY scripts/extensions.sh /tmp/extensions.sh
 RUN chmod +x /tmp/extensions.sh && \
     /tmp/extensions.sh && \
     rpm-ostree install adw-gtk3-theme && \
+    sed -i "s/experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']/experimental-features=['scale-monitor-framebuffer']/" /usr/etc/dconf/db/local.d/03-global && \
     systemctl enable dconf-update.service && \
     ostree container commit
 
