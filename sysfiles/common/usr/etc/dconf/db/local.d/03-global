@@ -8,4 +8,4 @@ experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
 button-layout='appmenu:minimize,maximize,close'
 
 [org/gnome/shell/keybindings]
-show-screeenshot-ui=['<Shift><Super>s']
+show-screenshot-ui=['<Shift><Super>s']
