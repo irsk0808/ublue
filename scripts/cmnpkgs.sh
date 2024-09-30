@@ -16,7 +16,8 @@ zlib \
 xcb-util-cursor \
 i2c-tools \
 alacarte \
-libnsl
+libnsl \
+wine
 
 # Pop in Valve's patched stuff
 rpm-ostree override remove \
