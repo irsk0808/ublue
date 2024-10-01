@@ -36,9 +36,8 @@ pipewire-plugin-libcamera \
 bluez \
 bluez-obexd \
 bluez-cups \
-bluez-libs
-#bluez-libs \
-#xorg-x11-server-Xwayland
+bluez-libs \
+xorg-x11-server-Xwayland
 #xorg-x11-server-Xwayland && \
 #rpm-ostree install \
 #mesa-va-drivers-freeworld
