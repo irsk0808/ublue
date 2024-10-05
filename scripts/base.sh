@@ -130,7 +130,7 @@ libstdc++ \
 || true && \
 rpm-ostree override replace \
 --experimental \
---from repo=fedora \
+--from repo=updates \
 libX11 \
 libX11-common \
 libX11-xcb \
