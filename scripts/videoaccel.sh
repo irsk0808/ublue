@@ -7,7 +7,7 @@ svt-vp9 \
 gstreamer1-vaapi \
 gstreamer1-plugin-openh264 \
 gstreamer1-plugins-bad-free-opencv \
-gstreamer1-plugins-bad-free-libs \
+#gstreamer1-plugins-bad-free-libs \
 gstreamer1-plugins-bad-free-extras \
 gstreamer1-plugin-gtk4 \
 #gstreamer1-plugins-ugly-free \
