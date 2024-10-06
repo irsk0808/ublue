@@ -15,6 +15,7 @@ gstreamer1-plugins-ugly \
 gstreamer1-plugins-bad-freeworld \
 gstreamer1-libav \
 gstreamer-plugins-espeak \
-gstreamer-ffmpeg \
-gstreamer-plugins-ugly \
-gstreamer-plugins-bad
+gstreamer-ffmpeg
+#gstreamer-ffmpeg \
+#gstreamer-plugins-ugly \
+#gstreamer-plugins-bad
