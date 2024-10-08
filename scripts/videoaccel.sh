@@ -6,7 +6,9 @@ svt-av1 \
 svt-vp9 \
 gstreamer1-plugin-openh264 \
 gstreamer1-vaapi \
-gstreamer-plugins-espeak \
+gstreamer-plugins-espeak && \
+rpm-ostree override replace --experimental \
+--from repo=fedora-multimedia \
 gstreamer1-plugins-ugly
 #rpm-ostree override remove \
 #gstreamer1-plugins-bad-free-libs \
