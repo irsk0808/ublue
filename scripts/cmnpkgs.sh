@@ -38,7 +38,3 @@ bluez-obexd \
 bluez-cups \
 bluez-libs \
 xorg-x11-server-Xwayland
-#rpm-ostree override remove \
-#mesa-va-drivers-freeworld && \
-#rpm-ostree install \
-#mesa-va-drivers-freeworld
