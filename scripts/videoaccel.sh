@@ -7,7 +7,7 @@ svt-vp9 \
 gstreamer1-plugin-openh264 \
 gstreamer1-vaapi \
 gstreamer-plugins-espeak \
-gstreamer1-plugins-ugly-free
+gstreamer1-plugins-ugly
 #rpm-ostree override remove \
 #gstreamer1-plugins-bad-free-libs \
 #gstreamer1-plugins-ugly-free && \
