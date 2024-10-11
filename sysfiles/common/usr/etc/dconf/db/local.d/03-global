@@ -9,3 +9,6 @@ button-layout='appmenu:minimize,maximize,close'
 
 [org/gnome/shell/keybindings]
 show-screenshot-ui=['<Shift><Super>s']
+
+[org/gnome/desktop/interface]
+clock-format='24h'
