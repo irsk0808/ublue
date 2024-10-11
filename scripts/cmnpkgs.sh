@@ -17,7 +17,8 @@ xcb-util-cursor \
 i2c-tools \
 alacarte \
 libnsl \
-wine
+wine \
+podman
 
 # Pop in Valve's patched stuff
 #rpm-ostree override remove \
@@ -33,8 +34,8 @@ pipewire-libs \
 pipewire-pulseaudio \
 pipewire-utils \
 pipewire-plugin-libcamera \
-bluez \
-bluez-obexd \
-bluez-cups \
-bluez-libs \
 xorg-x11-server-Xwayland
+#bluez
+#bluez-obexd
+#bluez-cups
+#bluez-libs
