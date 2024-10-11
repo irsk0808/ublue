@@ -50,6 +50,6 @@ gfx.x11-egl.force-enabled=true
 ```
 
 > [!NOTE]
-> 2nd and 3rd settings are only necessary for the desktop build.
+> 2nd and 3rd settings are only necessary if your primary GPU is from Nvidia.
 
 Apologies in advance if this is poorly put together. I'm an artist, not a programmer.
