@@ -2,8 +2,7 @@
 
 # New file dedicated just for media acceleration, because the amount of gstreamer packages I was adding became excessive
 rpm-ostree override remove \
-gstreamer1-plugins-ugly-free \
-gstreamer1-plugins-bad-free-libs && \
+gstreamer1-plugins-ugly-free && \
 rpm-ostree install \
 svt-av1 \
 svt-vp9 \
