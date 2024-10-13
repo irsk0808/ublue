@@ -9,8 +9,7 @@ svt-vp9 \
 gstreamer1-plugin-openh264 \
 gstreamer1-vaapi \
 gstreamer-plugins-espeak \
-gstreamer1-plugins-bad \
-gstreamer1-plugins-ugly 
+gstreamer1-plugins-ugly
 
 #gstreamer1-plugins-bad-free-opencv \
 #gstreamer1-plugins-bad-free-extras \
