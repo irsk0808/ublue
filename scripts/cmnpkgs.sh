@@ -4,7 +4,6 @@
 rpm-ostree install \
 gnome-randr-rust \
 gnome-monitor-config \
-polkit \
 neofetch \
 fastfetch \
 cowsay \
@@ -17,7 +16,6 @@ xcb-util-cursor \
 i2c-tools \
 alacarte \
 libnsl \
-wine \
 podman
 
 # Pop in Valve's patched stuff
