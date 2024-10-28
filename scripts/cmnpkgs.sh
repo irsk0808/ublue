@@ -30,8 +30,8 @@ pipewire-libs \
 pipewire-pulseaudio \
 pipewire-utils \
 pipewire-plugin-libcamera \
-bluez \
-bluez-obexd \
-bluez-cups \
-bluez-libs \
 xorg-x11-server-Xwayland
+#bluez \
+#bluez-obexd \
+#bluez-cups \
+#bluez-libs \
