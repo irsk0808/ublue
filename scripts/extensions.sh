@@ -10,8 +10,8 @@ glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
 rm -r /tmp/tmpdir
 
 # User themes
-wget -P /tmp https://extensions.gnome.org/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v58.shell-extension.zip
-unzip -d /tmp/tmpdir /tmp/user-themegnome-shell-extensions.gcampax.github.com.v58.shell-extension.zip
+wget -P /tmp https://extensions.gnome.org/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v59.shell-extension.zip
+unzip -d /tmp/tmpdir /tmp/user-themegnome-shell-extensions.gcampax.github.com.v59.shell-extension.zip
 UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
 cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
 glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
@@ -34,8 +34,8 @@ glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
 rm -r /tmp/tmpdir
 
 # Fullscreen avoider
-wget -P /tmp https://extensions.gnome.org/extension-data/fullscreen-avoidernoobsai.github.com.v12.shell-extension.zip
-unzip -d /tmp/tmpdir /tmp/fullscreen-avoidernoobsai.github.com.v12.shell-extension.zip
+wget -P /tmp https://extensions.gnome.org/extension-data/fullscreen-avoidernoobsai.github.com.v13.shell-extension.zip
+unzip -d /tmp/tmpdir /tmp/fullscreen-avoidernoobsai.github.com.v13.shell-extension.zip
 UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
 cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
 glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
@@ -58,8 +58,8 @@ glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
 rm -r /tmp/tmpdir
 
 # Light style
-wget -P /tmp https://extensions.gnome.org/extension-data/light-stylegnome-shell-extensions.gcampax.github.com.v6.shell-extension.zip
-unzip -d /tmp/tmpdir /tmp/light-stylegnome-shell-extensions.gcampax.github.com.v6.shell-extension.zip
+wget -P /tmp https://extensions.gnome.org/extension-data/light-stylegnome-shell-extensions.gcampax.github.com.v7.shell-extension.zip
+unzip -d /tmp/tmpdir /tmp/light-stylegnome-shell-extensions.gcampax.github.com.v7.shell-extension.zip
 UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
 cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
 glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
