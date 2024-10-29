@@ -1,12 +1,12 @@
 # Main arguments
-ARG FEDORA_MAJOR_VERSION=40
+ARG FEDORA_MAJOR_VERSION=41
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
 
 # Import main packages
-FROM ghcr.io/ublue-os/fsync-kernel:${FEDORA_MAJOR_VERSION}
-FROM ghcr.io/ublue-os/akmods-nvidia-open:fsync-${FEDORA_MAJOR_VERSION}
+FROM ghcr.io/ublue-os/bazzite-kernel:${FEDORA_MAJOR_VERSION}
+FROM ghcr.io/ublue-os/akmods-nvidia-open:bazzite-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
@@ -26,19 +26,18 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
 #    curl -Lo /etc/yum.repos.d/_copr_mrduarte-LenovoLegionLinux.repo https://copr.fedorainfracloud.org/coprs/mrduarte/LenovoLegionLinux/repo/fedora-"${FEDORA_MAJOR_VERSION}"/mrduarte-LenovoLegionLinux-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_ublue-os-staging.repo https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite-multilib/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-bazzite-multilib-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-    curl -Lo /etc/yum.repos.d/_copr_antiderivative-libfprint-tod-goodix-0.0.9.repo https://copr.fedorainfracloud.org/coprs/antiderivative/libfprint-tod-goodix-0.0.9/repo/fedora-"${FEDORA_MAJOR_VERSION}"/antiderivative-libfprint-tod-goodix-0.0.9-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+#    curl -Lo /etc/yum.repos.d/_copr_antiderivative-libfprint-tod-goodix-0.0.9.repo https://copr.fedorainfracloud.org/coprs/antiderivative/libfprint-tod-goodix-0.0.9/repo/fedora-"${FEDORA_MAJOR_VERSION}"/antiderivative-libfprint-tod-goodix-0.0.9-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     ostree container commit
 
-# Install kernel-fsync & SCX
-COPY --from=fsync-kernel /tmp/rpms /tmp/fsync-rpms
+# Install kernel-bazzite & SCX
+COPY --from=bazzite-kernel /tmp/rpms /tmp/bazzite-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     rpm-ostree override replace \
     --experimental \
-        /tmp/fsync-rpms/kernel-[0-9]*.rpm \
-        /tmp/fsync-rpms/kernel-headers-*.rpm \
-        /tmp/fsync-rpms/kernel-core-*.rpm \
-        /tmp/fsync-rpms/kernel-modules-*.rpm \
-        /tmp/fsync-rpms/kernel-uki-virt-*.rpm && \
+        /tmp/bazzite-rpms/kernel-[0-9]*.rpm \
+        /tmp/bazzite-rpms/kernel-core-*.rpm \
+        /tmp/bazzite-rpms/kernel-modules-*.rpm \
+        /tmp/bazzite-rpms/kernel-uki-virt-*.rpm && \
     rpm-ostree install scx-scheds && \
     systemctl enable scx && \
     sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
@@ -97,7 +96,7 @@ RUN rpm-ostree install \
     ostree container commit
 RUN systemctl enable logid
 
-# Goodix fingerprint scanner
-RUN rpm-ostree override remove libfprint && \
-    rpm-ostree install libfprint-tod-goodix && \
-    ostree container commit
+# Goodix fingerprint scanner (disabled because lacking copr for 41)
+#RUN rpm-ostree override remove libfprint && \
+#    rpm-ostree install libfprint-tod-goodix && \
+#    ostree container commit
