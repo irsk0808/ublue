@@ -4,7 +4,6 @@
 rpm-ostree install \
 gnome-randr-rust \
 gnome-monitor-config \
-neofetch \
 fastfetch \
 cowsay \
 grub-customizer \
