@@ -97,6 +97,10 @@ RUN rpm-ostree install \
 RUN systemctl enable logid
 
 # Goodix fingerprint scanner (disabled because lacking copr for 41)
+COPY sysfiles/rpms/ /tmp/rpms
+RUN rpm-ostree override remove libfprint && \
+    rpm-ostree install /tmp/rpms/libfprint-tod-goodix-0.0.9-1.x86_64.rpm && \
+    ostree container commit
 #RUN rpm-ostree override remove libfprint && \
 #    rpm-ostree install libfprint-tod-goodix && \
 #    ostree container commit
