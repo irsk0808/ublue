@@ -101,7 +101,7 @@ COPY sysfiles/rpms/ /tmp/rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     rpm-ostree remove fprintd && \
     rpm-ostree override replace \
-    --experimental --freeze \
+    --experimental \
         /tmp/rpms/libfprint-tod-1.94.5-2.fc41.x86_64.rpm && \
     rpm-ostree override remove libfprint && \
     rpm-ostree install /tmp/rpms/libfprint-tod-goodix-0.0.9-1.x86_64.rpm && \
