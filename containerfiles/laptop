@@ -89,7 +89,7 @@ RUN chmod +x /tmp/cmnpkgs.sh && \
 # Add extra packages
 RUN rpm-ostree install \
     logiops \
-    fprintd && \
+#    fprintd && \
 #    dkms \
 #    dkms-LenovoLegionLinux \
 #    python-LenovoLegionLinux && \
@@ -98,7 +98,8 @@ RUN systemctl enable logid
 
 # Goodix fingerprint scanner (disabled because lacking copr for 41)
 COPY sysfiles/rpms/ /tmp/rpms
-RUN rpm-ostree override replace \
+RUN rpm-ostree remove fprintd %% \
+    rpm-ostree override replace \
     --experimental --freeze --force \
         /tmp/rpms/libfprint-tod-1.94.5-2.fc41.x86_64.rpm && \
     rpm-ostree override remove libfprint && \
