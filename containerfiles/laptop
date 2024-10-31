@@ -26,7 +26,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
 #    curl -Lo /etc/yum.repos.d/_copr_mrduarte-LenovoLegionLinux.repo https://copr.fedorainfracloud.org/coprs/mrduarte/LenovoLegionLinux/repo/fedora-"${FEDORA_MAJOR_VERSION}"/mrduarte-LenovoLegionLinux-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_ublue-os-staging.repo https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite-multilib/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-bazzite-multilib-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    curl -Lo /etc/yum.repos.d/_copr_antiderivative-libfprint-tod-goodix-0.0.9.repo https://copr.fedorainfracloud.org/coprs/antiderivative/libfprint-tod-goodix-0.0.9/repo/fedora-"${FEDORA_MAJOR_VERSION}"/antiderivative-libfprint-tod-goodix-0.0.9-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    curl -Lo /etc/yum.repos.d/_copr_antiderivative-libfprint-tod-goodix-0.0.9.repo https://copr.fedorainfracloud.org/coprs/antiderivative/libfprint-tod-goodix-0.0.9/repo/fedora-"${FEDORA_MAJOR_VERSION}"/antiderivative-libfprint-tod-goodix-0.0.9-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     ostree container commit
 
 # Install kernel-bazzite & SCX
@@ -113,6 +113,6 @@ RUN systemctl enable logid
 #    rpm-ostree install /tmp/rpms/libfprint-tod-1.94.5-2.fc41.x86_64.rpm \
 #    /tmp/rpms/libfprint-tod-goodix-0.0.9-1.x86_64.rpm && \
 #    ostree container commit
-#RUN rpm-ostree override remove libfprint && \
-#    rpm-ostree install libfprint-tod-goodix && \
-#    ostree container commit
+RUN rpm-ostree override remove libfprint && \
+    rpm-ostree install libfprint-tod-goodix && \
+    ostree container commit
