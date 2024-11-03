@@ -66,8 +66,8 @@ glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
 rm -r /tmp/tmpdir
 
 # Quick settings audio panel
-wget -P /tmp https://extensions.gnome.org/extension-data/quick-settings-audio-panelrayzeq.github.io.v63.shell-extension.zip
-unzip -d /tmp/tmpdir /tmp/quick-settings-audio-panelrayzeq.github.io.v63.shell-extension.zip
+wget -P /tmp https://extensions.gnome.org/extension-data/quick-settings-audio-panelrayzeq.github.io.v68.shell-extension.zip
+unzip -d /tmp/tmpdir /tmp/quick-settings-audio-panelrayzeq.github.io.v68.shell-extension.zip
 UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
 cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod -R 755 /usr/share/gnome-shell/extensions/${UUID}/
 glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
