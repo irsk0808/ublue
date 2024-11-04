@@ -69,7 +69,21 @@ rm -r /tmp/tmpdir
 wget -P /tmp https://extensions.gnome.org/extension-data/quick-settings-audio-panelrayzeq.github.io.v68.shell-extension.zip
 unzip -d /tmp/tmpdir /tmp/quick-settings-audio-panelrayzeq.github.io.v68.shell-extension.zip
 UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
-cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/extension.js && chmod -R 755 /usr/share/gnome-shell/extensions/${UUID}/libs && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/LICENSE && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/stylesheet.css && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/prefs.js && chmod -R 755 /usr/share/gnome-shell/extensions/${UUID}/schemas
+cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} 
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/extension.js
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/LICENSE
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/stylesheet.css
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/prefs.js
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/widgets.js
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/libpanel
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/libpanel/patcher.js
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/libpanel/utils.js
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/libpanel/LICENSE
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/libpanel/gschemas.compiled
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/libpanel/README.md
+chmod 755 /usr/share/gnome-shell/extensions/${UUID}/libs/libpanel/main.js
 glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
 rm -r /tmp/tmpdir
 
