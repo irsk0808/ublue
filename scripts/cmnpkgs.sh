@@ -17,7 +17,7 @@ alacarte \
 libnsl \
 podman
 
-# Pop in Valve's patched stuff
+# Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
 --from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
 pipewire \
@@ -29,8 +29,8 @@ pipewire-libs \
 pipewire-pulseaudio \
 pipewire-utils \
 pipewire-plugin-libcamera \
+bluez \
+bluez-obexd \
+bluez-cups \
+bluez-libs \
 xorg-x11-server-Xwayland
-#bluez \
-#bluez-obexd \
-#bluez-cups \
-#bluez-libs \
