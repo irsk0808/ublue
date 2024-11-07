@@ -15,7 +15,8 @@ xcb-util-cursor \
 i2c-tools \
 alacarte \
 libnsl \
-podman
+podman \
+powertop
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
