@@ -16,7 +16,8 @@ i2c-tools \
 alacarte \
 libnsl \
 podman \
-powertop
+powertop \
+gamescope
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
@@ -34,5 +35,4 @@ bluez \
 bluez-obexd \
 bluez-cups \
 bluez-libs \
-xorg-x11-server-Xwayland \
-gamescope
+xorg-x11-server-Xwayland
