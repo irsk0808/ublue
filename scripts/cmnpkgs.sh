@@ -35,5 +35,4 @@ bluez \
 bluez-obexd \
 bluez-cups \
 bluez-libs \
-xorg-x11-server-Xwayland \
-gamescope
+xorg-x11-server-Xwayland
