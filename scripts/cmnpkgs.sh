@@ -36,4 +36,3 @@ bluez-cups \
 bluez-libs \
 xorg-x11-server-Xwayland \
 gamescope
-
