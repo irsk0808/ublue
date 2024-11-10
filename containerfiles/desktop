@@ -83,4 +83,6 @@ RUN rpm-ostree install \
     logiops && \
 #    solaar && \
     ostree container commit
-RUN systemctl enable logid
+RUN systemctl enable logid && \
+    systemctl enable logidrestart.service && \
+    ostree container commit

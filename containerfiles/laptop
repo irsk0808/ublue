@@ -94,7 +94,9 @@ RUN rpm-ostree install \
 #    dkms-LenovoLegionLinux \
 #    python-LenovoLegionLinux && \
     ostree container commit
-RUN systemctl enable logid
+RUN systemctl enable logid && \
+    systemctl enable logidrestart.service && \
+    ostree container commit
 
 # Goodix fingerprint scanner (Local RPMs because lacking copr for 41)
 COPY sysfiles/rpms/ /tmp/rpms

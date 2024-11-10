@@ -1,0 +1,10 @@
+[Unit]
+Description=Restart logid service after wakeup
+After=suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart logid
+
+[Install]
+WantedBy=suspend.target
