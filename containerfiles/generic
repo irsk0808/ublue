@@ -43,6 +43,7 @@ RUN rpm-ostree cliwrap install-to-root / && \
 COPY scripts/build.sh /tmp/build.sh
 RUN tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
+    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (uBlue)"/' /usr/lib/os-release && \
     ostree container commit
 
 # Install custom themes/extensions
