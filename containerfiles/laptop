@@ -57,7 +57,7 @@ COPY scripts/build.sh /tmp/build.sh
 RUN tmp/build.sh && \
     mkdir -p /var/lib/alternatives && \
     systemctl enable powersave.service && \
-    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (uBlue)"/' /usr/lib/os-release && \
+    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     ostree container commit
 
 # Install laptop specific extensions
