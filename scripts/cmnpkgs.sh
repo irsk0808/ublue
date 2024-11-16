@@ -16,7 +16,8 @@ i2c-tools \
 alacarte \
 libnsl \
 podman \
-powertop 
+powertop \
+steam-devices
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
