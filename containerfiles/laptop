@@ -17,15 +17,13 @@ COPY sysfiles/nvidia/ /
 
 # Update packages which often cause build fails
 COPY scripts/base.sh /tmp/base.sh
-RUN chmod +x /tmp/base.sh && \
-    /tmp/base.sh && \
+RUN /tmp/base.sh && \
     ostree container commit
 
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
     curl -Lo /etc/yum.repos.d/_copr_fiftydinar-gnome-randr-rust.repo https://copr.fedorainfracloud.org/coprs/fiftydinar/gnome-randr-rust/repo/fedora-"${FEDORA_MAJOR_VERSION}"/fiftydinar-gnome-randr-rust-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    curl -Lo /etc/yum.repos.d/_copr_mrduarte-LenovoLegionLinux.repo https://copr.fedorainfracloud.org/coprs/mrduarte/LenovoLegionLinux/repo/fedora-"${FEDORA_MAJOR_VERSION}"/mrduarte-LenovoLegionLinux-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_ublue-os-staging.repo https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite-multilib/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-bazzite-multilib-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     curl -Lo /etc/yum.repos.d/_copr_antiderivative-libfprint-tod-goodix-0.0.9.repo https://copr.fedorainfracloud.org/coprs/antiderivative/libfprint-tod-goodix-0.0.9/repo/fedora-"${FEDORA_MAJOR_VERSION}"/antiderivative-libfprint-tod-goodix-0.0.9-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
@@ -75,14 +73,12 @@ RUN tmp/intramfs.sh && \
 
 # Install laptop specific extensions
 COPY scripts/extensions_laptop.sh /tmp/extensions_laptop.sh
-RUN chmod +x /tmp/extensions_laptop.sh && \
-    /tmp/extensions_laptop.sh && \
+RUN /tmp/extensions_laptop.sh && \
     ostree container commit
 
 # Install custom themes/extensions
 COPY scripts/extensions.sh /tmp/extensions.sh
-RUN chmod +x /tmp/extensions.sh && \
-    /tmp/extensions.sh && \
+RUN /tmp/extensions.sh && \
     rpm-ostree install adw-gtk3-theme && \
     sed -i "s/enabled-extensions=\['appindicatorsupport@rgcjonas.gmail.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'quick-settings-audio-panel@rayzeq.github.io', 'fullscreen-avoider@noobsai.github.com', 'grand-theft-focus@zalckos.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'legacyschemeautoswitcher@joshimukul29.gmail.com'\]/enabled-extensions=\['appindicatorsupport@rgcjonas.gmail.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'quick-settings-audio-panel@rayzeq.github.io', 'fullscreen-avoider@noobsai.github.com', 'grand-theft-focus@zalckos.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'legacyschemeautoswitcher@joshimukul29.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'azwallpaper@azwallpaper.gitlab.com'\]/" /usr/etc/dconf/db/local.d/01-extensions && \
     systemctl enable dconf-update.service && \
@@ -90,23 +86,17 @@ RUN chmod +x /tmp/extensions.sh && \
 
 # Install media encoders
 COPY scripts/videoaccel.sh /tmp/videoaccel.sh
-RUN chmod +x /tmp/videoaccel.sh && \
-    /tmp/videoaccel.sh && \
+RUN /tmp/videoaccel.sh && \
     ostree container commit
 
 # Install shared set of packages
 COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
-RUN chmod +x /tmp/cmnpkgs.sh && \
-    /tmp/cmnpkgs.sh && \
+RUN /tmp/cmnpkgs.sh && \
     ostree container commit
 
 # Add extra packages
 RUN rpm-ostree install \
     logiops && \
-#    fprintd && \
-#    dkms \
-#    dkms-LenovoLegionLinux \
-#    python-LenovoLegionLinux && \
     ostree container commit
 RUN systemctl enable logid && \
     systemctl enable logidrestart.service && \

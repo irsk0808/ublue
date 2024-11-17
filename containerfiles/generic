@@ -14,8 +14,7 @@ COPY sysfiles/common/ /
 
 # Update packages which often cause build fails
 COPY scripts/base.sh /tmp/base.sh
-RUN chmod +x /tmp/base.sh && \
-    /tmp/base.sh && \
+RUN /tmp/base.sh && \
     ostree container commit
 
 # Setup copr repos
@@ -56,20 +55,17 @@ RUN tmp/intramfs.sh && \
 
 # Install custom themes/extensions
 COPY scripts/extensions.sh /tmp/extensions.sh
-RUN chmod +x /tmp/extensions.sh && \
-    /tmp/extensions.sh && \
+RUN /tmp/extensions.sh && \
     rpm-ostree install adw-gtk3-theme && \
     systemctl enable dconf-update.service && \
     ostree container commit
 
 # Install media encoders
 COPY scripts/videoaccel.sh /tmp/videoaccel.sh
-RUN chmod +x /tmp/videoaccel.sh && \
-    /tmp/videoaccel.sh && \
+RUN /tmp/videoaccel.sh && \
     ostree container commit
 
 # Install shared set of packages
 COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
-RUN chmod +x /tmp/cmnpkgs.sh && \
-    /tmp/cmnpkgs.sh && \
+RUN /tmp/cmnpkgs.sh && \
     ostree container commit
