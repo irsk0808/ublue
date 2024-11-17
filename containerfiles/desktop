@@ -65,8 +65,8 @@ RUN rpm-ostree install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
 RUN rpm-ostree install /tmp/rpms/kmods/kmod-nct6687d*.rpm
 
 # Post install work
-COPY scripts/build.sh /tmp/build.sh
-RUN tmp/build.sh && \
+COPY scripts/intramfs.sh /tmp/intramfs.sh
+RUN tmp/intramfs.sh && \
     mkdir -p /var/lib/alternatives && \
     systemctl enable performance.service && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \

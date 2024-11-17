@@ -66,8 +66,8 @@ RUN find /tmp/rpms
 RUN rpm-ostree install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
 
 # Post install work
-COPY scripts/build.sh /tmp/build.sh
-RUN tmp/build.sh && \
+COPY scripts/intramfs.sh /tmp/intramfs.sh
+RUN tmp/intramfs.sh && \
     mkdir -p /var/lib/alternatives && \
     systemctl enable powersave.service && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
