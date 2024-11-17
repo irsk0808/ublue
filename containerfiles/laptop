@@ -7,6 +7,8 @@ ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
 # Import main packages
 FROM ghcr.io/ublue-os/bazzite-kernel:${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/akmods-nvidia-open:bazzite-${FEDORA_MAJOR_VERSION}
+FROM ghcr.io/ublue-os/akmods:bazzite-${FEDORA_MAJOR_VERSION}
+FROM ghcr.io/ublue-os/akmods-extra:bazzite-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
@@ -51,6 +53,17 @@ RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/h
     FEDORA_MAJOR_VERSION=${FEDORA_MAJOR_VERSION} IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
     rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
     ostree container commit
+
+# Install kmods from "common" image
+COPY --from=akmods /rpms/ /tmp/rpms
+RUN find /tmp/rpms
+RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
+RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm
+
+# Install kmods from "extra" image
+COPY --from=akmods /rpms/ /tmp/rpms
+RUN find /tmp/rpms
+RUN rpm-ostree install /tmp/rpms/kmods/kmod-ryzen_smu*.rpm
 
 # Post install work
 COPY scripts/build.sh /tmp/build.sh
