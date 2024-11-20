@@ -1,0 +1,10 @@
+[Unit]
+Description=Actions on Charger Connected
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/gnome-randr modify -m 2880x1800@120.001 eDP-2
+
+[Install]
+WantedBy=default.target
+#WantedBy=multi-user.target
