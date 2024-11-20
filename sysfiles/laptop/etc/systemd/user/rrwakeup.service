@@ -4,9 +4,8 @@ After=sleep.target
 
 [Service]
 Type=oneshot
-ExecStartPre=/bin/sleep 10
-ExecStart=usr/bin/bash -c 'grep -q 1 "/sys/class/power_supply/ADP0/online" && gnome-randr modify -m 2880x1800@120.001 eDP-2 || gnome-randr modify -m 2880x1800@60.001 eDP-2'
-RemainAfterExit=yes
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/bash -c 'grep -q 1 "/sys/class/power_supply/ADP0/online" && gnome-randr modify -m 2880x1800@120.001 eDP-2 || gnome-randr modify -m 2880x1800@60.001 eDP-2'
 
 [Install]
 WantedBy=sleep.target
