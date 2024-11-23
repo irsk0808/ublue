@@ -86,7 +86,7 @@ RUN /tmp/extensions.sh && \
     systemctl --global enable charger-connected.service && \
     systemctl --global enable charger-disconnected.service && \
     systemctl --global enable rrwakeup.service && \
-    systemctl enable suspend@.service && \
+    systemctl enable suspend@$(whoami) && \
     ostree container commit
 
 # Install media encoders
