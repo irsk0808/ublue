@@ -17,7 +17,8 @@ alacarte \
 libnsl \
 podman \
 powertop \
-steam-devices
+steam-devices \
+google-noto-fonts-all
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
