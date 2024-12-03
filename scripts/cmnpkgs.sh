@@ -19,7 +19,8 @@ podman \
 powertop \
 steam-devices \
 google-noto-fonts-all \
-xorg-x11-server-Xorg
+xorg-x11-server-Xorg \
+xorg-x11-xauth
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
