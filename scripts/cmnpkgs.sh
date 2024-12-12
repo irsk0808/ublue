@@ -13,7 +13,6 @@ yt-dlp \
 zlib \
 xcb-util-cursor \
 i2c-tools \
-alacarte \
 libnsl \
 podman \
 powertop \
