@@ -18,6 +18,7 @@ podman \
 powertop \
 steam-devices \
 google-noto-fonts-all \
+texlive-inter \
 xhost
 
 # Pop in Bazzite patched stuff
