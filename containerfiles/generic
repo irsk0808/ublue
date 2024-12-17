@@ -71,3 +71,5 @@ RUN /tmp/videoaccel.sh && \
 COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
 RUN /tmp/cmnpkgs.sh && \
     ostree container commit
+COPY --from=ghcr.io/ublue-os/ublue-update:${FEDORA_MAJOR_VERSION} /rpms/ublue-update.noarch.rpm /tmp/rpms/
+RUN pip install topgrade && rpm-ostree install /tmp/rpms/ublue-update.noarch.rpm
