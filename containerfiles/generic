@@ -9,6 +9,7 @@ FROM ghcr.io/ublue-os/bazzite-kernel:${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/akmods:bazzite-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/akmods-extra:bazzite-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
+FROM ghcr.io/ublue-os/ublue-update:${FEDORA_MAJOR_VERSION}
 
 COPY sysfiles/common/ /
 
@@ -71,5 +72,5 @@ RUN /tmp/videoaccel.sh && \
 COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
 RUN /tmp/cmnpkgs.sh && \
     ostree container commit
-COPY --from=ghcr.io/ublue-os/ublue-update:${FEDORA_MAJOR_VERSION} /rpms/ublue-update.noarch.rpm /tmp/rpms/
+COPY --from=ghcr.io/ublue-os/ublue-update /rpms/ublue-update.noarch.rpm /tmp/rpms/
 RUN pip install topgrade && rpm-ostree install /tmp/rpms/ublue-update.noarch.rpm
