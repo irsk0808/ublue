@@ -18,11 +18,7 @@ podman \
 powertop \
 steam-devices \
 google-noto-fonts-all \
-xhost \
-python3-psutil \
-python3-pip \
-libnotify
-pip install topgrade
+xhost
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
