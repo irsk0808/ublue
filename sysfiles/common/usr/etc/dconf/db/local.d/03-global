@@ -4,6 +4,9 @@ logout-prompt=false
 [org/gnome/mutter]
 experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling', 'variable-refresh-rate']
 
+[org/gnome/nautilus/preferences]
+show-create-link=true
+
 [org/gnome/desktop/wm/preferences] 
 button-layout='appmenu:minimize,maximize,close'
 
