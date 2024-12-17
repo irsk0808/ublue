@@ -19,7 +19,6 @@ powertop \
 steam-devices \
 google-noto-fonts-all \
 rsms-inter-fonts \
-rsms-inter-vf-font \
 xhost
 
 # Pop in Bazzite patched stuff
