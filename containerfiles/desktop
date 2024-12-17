@@ -9,8 +9,8 @@ FROM ghcr.io/ublue-os/bazzite-kernel:${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/akmods-nvidia-open:bazzite-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/akmods:bazzite-${FEDORA_MAJOR_VERSION}
 FROM ghcr.io/ublue-os/akmods-extra:bazzite-${FEDORA_MAJOR_VERSION}
-FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 FROM ghcr.io/ublue-os/ublue-update:${FEDORA_MAJOR_VERSION}
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
 COPY sysfiles/desktop/ /
