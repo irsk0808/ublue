@@ -21,7 +21,7 @@ google-noto-fonts-all \
 rsms-inter-fonts \
 xhost
 
-# Pop in Bazzite patched stuff (xorg-x11-server-Xwayland temporarily removed to test something)
+# Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
 --from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
 pipewire \
@@ -36,7 +36,8 @@ pipewire-plugin-libcamera \
 bluez \
 bluez-obexd \
 bluez-cups \
-bluez-libs
+bluez-libs \
+xorg-x11-server-Xwayland
 
 # Installing FirefoxPWA to save headaches later
 rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
