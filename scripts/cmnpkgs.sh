@@ -24,7 +24,8 @@ xhost
 # Replace mutter with package from ublue's copr
 rpm-ostree override replace --experimental \
 --from repo=copr:copr.fedorainfracloud.org:ublue-os:staging \
-mutter
+mutter \
+mutter-common
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
