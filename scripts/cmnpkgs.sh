@@ -21,11 +21,10 @@ google-noto-fonts-all \
 rsms-inter-fonts \
 xhost
 
-# Replace mutter with package from ublue's copr
+# Replace mutter with a patched one
 rpm-ostree override replace --experimental \
---from repo=copr:copr.fedorainfracloud.org:ublue-os:staging \
-mutter \
-mutter-common
+--from repo=copr:copr.fedorainfracloud.org:gloriouseggroll:nobara-41 \
+mutter
 
 # Pop in Bazzite patched stuff
 rpm-ostree override replace --experimental \
