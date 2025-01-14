@@ -30,7 +30,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     ostree container commit
 
 # Install kernel-bazzite & SCX
-COPY --from=bazzite-kernel:${FEDORA_MAJOR_VERSION} /tmp/rpms /tmp/bazzite-rpms
+COPY --from=bazzite-kernel /tmp/rpms /tmp/bazzite-rpms
 RUN rpm-ostree cliwrap install-to-root / && \
     rpm-ostree override replace \
     --experimental \
