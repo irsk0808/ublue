@@ -5,10 +5,10 @@ ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
 
 # Import main packages
-FROM ghcr.io/ublue-os/bazzite-kernel:${FEDORA_MAJOR_VERSION}
-FROM ghcr.io/ublue-os/akmods-nvidia-open:bazzite-${FEDORA_MAJOR_VERSION}
-FROM ghcr.io/ublue-os/akmods:bazzite-${FEDORA_MAJOR_VERSION}
-FROM ghcr.io/ublue-os/akmods-extra:bazzite-${FEDORA_MAJOR_VERSION}
+FROM ghcr.io/ublue-os/bazzite-kernel:${SOURCE_TAG} AS bazzite-kernel
+FROM ghcr.io/ublue-os/akmods-nvidia-open:bazzite-${SOURCE_TAG} AS akmods-nvidia-open
+FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
+FROM ghcr.io/ublue-os/akmods-extra:bazzite-${SOURCE_TAG} AS akmods-extra
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
