@@ -1,18 +1,127 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Generated with AI, but wow is it so much cleaner than my weird ass implementation
+# This particular script exists to add extensions just for the laptop build
+# Either way, the script:
+#   - Checks if gnome-shell is installed. If not, it fails immediately
+#   - Detects your GNOME Shell major version
+#   - Maintains a local map of extension "friendly names" to numeric IDs
+#   - Uses "extension-info" from extensions.gnome.org to get the latest ZIP link
+#   - Installs each extension into /usr/share/gnome-shell/extensions/<UUID>
 
-# Laptop specific extensions
-# Hide Top Bar
-wget -P /tmp https://extensions.gnome.org/extension-data/hidetopbarmathieu.bidon.ca.v118.shell-extension.zip
-unzip -d /tmp/tmpdir /tmp/hidetopbarmathieu.bidon.ca.v118.shell-extension.zip
-UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
-cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
-glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
-rm -r /tmp/tmpdir
+set -euo pipefail
 
-# Wallpaper Slideshow
-wget -P /tmp https://extensions.gnome.org/extension-data/azwallpaperazwallpaper.gitlab.com.v10.shell-extension.zip
-unzip -d /tmp/tmpdir /tmp/azwallpaperazwallpaper.gitlab.com.v10.shell-extension.zip
-UUID=$(jq -r '.["uuid"]' < '/tmp/tmpdir/metadata.json')
-cp -r tmp/tmpdir /usr/share/gnome-shell/extensions/${UUID} && chmod 755 /usr/share/gnome-shell/extensions/${UUID}/metadata.json
-glib-compile-schemas /usr/share/gnome-shell/extensions/${UUID}/schemas/
-rm -r /tmp/tmpdir
+###############################################################################
+# 1) Detect GNOME Shell major version, fail if gnome-shell not found
+###############################################################################
+detect_shell_version() {
+  if ! command -v gnome-shell &>/dev/null; then
+    echo "ERROR: gnome-shell not found. Are you sure you're on GNOME?"
+    exit 1
+  fi
+
+  local ver_raw
+  ver_raw=$(gnome-shell --version | awk '{print $3}')  # e.g. "47.1"
+  local major="${ver_raw%%.*}"                         # => "47"
+  echo "$major"
+}
+
+GNOME_VERSION="$(detect_shell_version)"
+echo "Detected GNOME Shell major version: $GNOME_VERSION"
+
+###############################################################################
+# 2) Local map: "friendly_name" => numeric ID on extensions.gnome.org
+###############################################################################
+declare -A EXTENSIONS=(
+  [hide-top-bar]=545
+  [wallpaper-slideshow]=6281
+)
+
+###############################################################################
+# 3) "install_extension_from_url": Download/unzip/copy to /usr/share/gnome-shell/extensions/<UUID>
+###############################################################################
+install_extension_from_url() {
+  local url="$1"
+
+  # 1) Download the zip to /tmp
+  local tmp_zip
+  tmp_zip="$(mktemp --suffix=.zip)"
+  echo "Downloading extension zip from: $url"
+  wget -qO "$tmp_zip" "$url"
+
+  # 2) Unzip to a temp directory
+  local tmp_dir
+  tmp_dir="$(mktemp -d)"
+  unzip -q "$tmp_zip" -d "$tmp_dir"
+
+  # 3) Parse the UUID from metadata.json
+  local uuid
+  uuid="$(jq -r '.uuid' < "$tmp_dir/metadata.json" 2>/dev/null || echo "")"
+  if [[ -z "$uuid" || "$uuid" == "null" ]]; then
+    echo "ERROR: Could not parse 'uuid' from $tmp_dir/metadata.json"
+    rm -rf "$tmp_zip" "$tmp_dir"
+    exit 1
+  fi
+
+  # 4) Copy to /usr/share/gnome-shell/extensions/<UUID>
+  local dest="/usr/share/gnome-shell/extensions/$uuid"
+  mkdir -p "$dest"
+  cp -r "$tmp_dir/." "$dest"
+
+  # 5) Set permissions (simple approach: everything = 755)
+  chmod -R 755 "$dest"
+
+  # 6) Compile schemas if the extension has them
+  if [[ -d "$dest/schemas" ]]; then
+    glib-compile-schemas "$dest/schemas"
+  fi
+
+  # 7) Clean up
+  rm -rf "$tmp_zip" "$tmp_dir"
+
+  echo "Installed extension with UUID '$uuid' at $dest"
+}
+
+###############################################################################
+# 4) "fetch_and_install_extension": Queries extension-info and installs
+###############################################################################
+fetch_and_install_extension() {
+  local pk="$1"  # numeric ID
+
+  local api_url="https://extensions.gnome.org/extension-info/?pk=${pk}&shell_version=${GNOME_VERSION}"
+  echo "Querying extension-info: $api_url"
+
+  local json
+  json="$(wget -qO- "$api_url" || echo "")"
+  if [[ -z "$json" ]]; then
+    echo "ERROR: No data returned from $api_url"
+    exit 1
+  fi
+
+  local partial_url
+  partial_url="$(jq -r '.download_url' <<< "$json")"
+  if [[ "$partial_url" == "null" || -z "$partial_url" ]]; then
+    echo "ERROR: No valid download_url found for pk=$pk, shell_version=$GNOME_VERSION"
+    echo "       The extension may not be declared compatible with GNOME $GNOME_VERSION."
+    exit 1
+  fi
+
+  local full_url="https://extensions.gnome.org${partial_url}"
+  echo "Found download URL: $full_url"
+
+  install_extension_from_url "$full_url"
+}
+
+###############################################################################
+# 5) MAIN: loop over each extension in the map and install it
+###############################################################################
+echo "Starting GNOME extension installations..."
+
+for ext_name in "${!EXTENSIONS[@]}"; do
+  pk="${EXTENSIONS[$ext_name]}"
+  echo "-------------------------------------------------"
+  echo "Installing '$ext_name' (ID=$pk) for GNOME $GNOME_VERSION"
+  fetch_and_install_extension "$pk"
+done
+
+echo "All extensions installed successfully!"
