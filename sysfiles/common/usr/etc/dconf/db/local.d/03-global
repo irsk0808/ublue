@@ -2,7 +2,7 @@
 logout-prompt=false
 
 [org/gnome/mutter]
-experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling', 'variable-refresh-rate']
+experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
 
 [org/gnome/nautilus/preferences]
 show-create-link=true
