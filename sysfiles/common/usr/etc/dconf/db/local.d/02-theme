@@ -9,10 +9,6 @@ font-name='Inter 10'
 
 [org/gnome/shell/extensions/blur-my-shell/panel]
 force-light-text=true
-sigma=50
-
-[org/gnome/shell/extensions/blur-my-shell/overview]
-sigma=50
 
 [org/gnome/shell/extensions/rounded-window-corners-reborn]
 border-color=(0.5, 0.5, 0.5, 0.5)
