@@ -139,4 +139,33 @@ rpm-ostree override replace \
 --experimental \
 --from repo=updates \
 libv4l \
+|| true && \
+rpm-ostree override replace \
+--experimental \
+--from repo=updates \
+elfutils-libelf \
+elfutils-libs \
+|| true && \
+rpm-ostree override replace \
+--experimental \
+--from repo=updates \
+glibc \
+glibc-common \
+glibc-all-langpacks \
+glibc-gconv-extra \
+|| true && \
+rpm-ostree override replace \
+--experimental \
+--from repo=updates \
+libxcrypt \
+|| true && \
+rpm-ostree override replace \
+--experimental \
+--from repo=updates \
+SDL2 \
+|| true && \
+rpm-ostree override replace \
+--experimental \
+--from repo=updates \
+openldap \
 || true
