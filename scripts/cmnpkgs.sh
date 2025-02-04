@@ -39,7 +39,7 @@ gstreamer1-plugins-ugly
 # mutter-common
 
 # Pop in Bazzite patched stuff
-dnf -y swap \
+dnf5 -y swap \
 --repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
 pipewire \
 pipewire-alsa \
