@@ -21,17 +21,6 @@ google-noto-fonts-all \
 rsms-inter-fonts \
 xhost
 
-### Hardware Codecs
-dnf5 -y remove \
-gstreamer1-plugins-ugly-free && \
-dnf5 -y install \
-svt-av1 \
-svt-vp9 \
-gstreamer1-plugin-openh264 \
-gstreamer1-vaapi \
-gstreamer-plugins-espeak \
-gstreamer1-plugins-ugly
-
 # Replace mutter with package from ublue's copr (disabled till a good one pops up)
 # rpm-ostree override replace --experimental \
 # --from repo=copr:copr.fedorainfracloud.org:ublue-os:staging \
@@ -39,8 +28,8 @@ gstreamer1-plugins-ugly
 # mutter-common
 
 # Pop in Bazzite patched stuff
-dnf -y swap \
---repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
+rpm-ostree override replace --experimental \
+--from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
 pipewire \
 pipewire-alsa \
 pipewire-gstreamer \
@@ -59,5 +48,5 @@ xorg-x11-server-Xwayland
 # Installing FirefoxPWA to save headaches later
 rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
 echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" | tee /etc/yum.repos.d/firefoxpwa.repo
-dnf5 -y --enable-repo="firefoxpwa"
-dnf5 -y install firefoxpwa
+rpm-ostree --enablerepo="firefoxpwa"
+rpm-ostree install firefoxpwa
