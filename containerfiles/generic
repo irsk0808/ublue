@@ -27,25 +27,27 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     ostree container commit
 
 # Install kernel-bazzite & SCX
-COPY --from=bazzite-kernel /tmp/rpms /tmp/bazzite-rpms
-RUN rpm-ostree cliwrap install-to-root / && \
-    rpm-ostree override replace \
-    --experimental \
-        /tmp/bazzite-rpms/kernel-[0-9]*.rpm \
-        /tmp/bazzite-rpms/kernel-core-*.rpm \
-        /tmp/bazzite-rpms/kernel-modules-*.rpm \
-        /tmp/bazzite-rpms/kernel-uki-virt-*.rpm && \
+COPY --from=akmods /rpms/ /tmp/rpms
+RUN find /tmp/rpms
+    dnf5 -y remove --no-autoremove \
+    kernel \
+    kernel-core \
+    kernel-modules \
+    kernel-modules-core \
+    kernel-modules-extra && \
+    dnf5 -y install \
+        /tmp/kernel-rpms/kernel-[0-9]*.rpm \
+        /tmp/kernel-rpms/kernel-core-*.rpm \
+        /tmp/kernel-rpms/kernel-modules-*.rpm \
+        /tmp/kernel-rpms/kernel-uki-virt-*.rpm \
+        /tmp/kernel-rpms/kernel-devel-*.rpm && \
+RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
+RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm
     rpm-ostree install scx-scheds && \
     systemctl enable scx && \
     sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     ostree container commit
-
-# Install kmods from "common" image
-COPY --from=akmods /rpms/ /tmp/rpms
-RUN find /tmp/rpms
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm
 
 # Post install work
 COPY scripts/intramfs.sh /tmp/intramfs.sh
