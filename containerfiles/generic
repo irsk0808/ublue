@@ -27,8 +27,8 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     ostree container commit
 
 # Install kernel-bazzite & SCX
-COPY --from=akmods /rpms/ /tmp/rpms
-RUN find /tmp/rpms/kernel-rpms
+COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
+RUN find /tmp/kernel-rpms
     dnf5 -y remove --no-autoremove \
     kernel \
     kernel-core \
@@ -41,6 +41,7 @@ RUN find /tmp/rpms/kernel-rpms
         /tmp/kernel-rpms/kernel-modules-*.rpm \
         /tmp/kernel-rpms/kernel-uki-virt-*.rpm \
         /tmp/kernel-rpms/kernel-devel-*.rpm && \
+COPY --from=akmods /rpms/ /tmp/rpms
 RUN find /tmp/rpms
 RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
 RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm
