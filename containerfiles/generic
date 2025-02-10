@@ -4,16 +4,14 @@ ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
 
-# Import main package
+# Import main packages
 FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
-FROM ghcr.io/ublue-os/akmods-extra:bazzite-${SOURCE_TAG} AS akmods-extra
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
 
 # Setup copr repos
-RUN dnf5 -y install dnf5-plugins && \
-    dnf5 -y copr enable fiftydinar/gnome-randr-rust && \
+RUN dnf5 -y copr enable fiftydinar/gnome-randr-rust && \
     dnf5 -y copr enable ublue-os/staging && \
     dnf5 -y copr enable kylegospo/bazzite-multilib && \
     ostree container commit
