@@ -22,7 +22,8 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
 # Install kernel-bazzite & SCX
 COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
 RUN find /tmp/kernel-rpms
-RUN dnf5 -y remove --no-autoremove \
+RUN /tmp/unwrap.sh && \
+    dnf5 -y remove --no-autoremove \
     kernel \
     kernel-core \
     kernel-modules \
