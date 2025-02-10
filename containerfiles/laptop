@@ -105,13 +105,13 @@ RUN systemctl enable logid && \
 
 # Goodix fingerprint scanner
 COPY sysfiles/rpms/ /tmp/rpms
-RUN rpm-ostree override remove \
+RUN dnf5 -y remove --no-autoremove \
     libfprint \
     fprintd \
     fprintd-pam && \
-    rpm-ostree install \
+    dnf5 -y install \
     libfprint-tod libfprint-tod-goodix && \
-    rpm-ostree install \
+    dnf5 -y install \
     fprintd \
     fprintd-pam && \
     ostree container commit
