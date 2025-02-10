@@ -61,11 +61,6 @@ RUN /tmp/extensions.sh && \
     systemctl enable dconf-update.service && \
     ostree container commit
 
-# Install media encoders
-COPY scripts/videoaccel.sh /tmp/videoaccel.sh
-RUN /tmp/videoaccel.sh && \
-    ostree container commit
-
 # Install shared set of packages
 COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
 RUN /tmp/cmnpkgs.sh && \

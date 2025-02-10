@@ -21,6 +21,19 @@ google-noto-fonts-all \
 rsms-inter-fonts \
 xhost
 
+# Media plugins
+dnf5 -y remove --no-autoremove \
+gstreamer1-plugins-ugly-free && \
+dnf5 -y install \
+svt-av1 \
+svt-vp9 \
+gstreamer1-plugin-openh264 \
+gstreamer1-vaapi \
+gstreamer-plugins-espeak \
+gstreamer1-plugins-ugly \
+mesa-vdpau-drivers.x86_64 \
+mesa-vdpau-drivers.i686
+
 # Replace mutter with package from ublue's copr (disabled till a good one pops up)
 # rpm-ostree override replace --experimental \
 # --from repo=copr:copr.fedorainfracloud.org:ublue-os:staging \
