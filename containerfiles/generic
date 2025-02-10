@@ -45,8 +45,8 @@ RUN dnf5 -y install scx-scheds && \
     ostree container commit
 
 # Post install work
-COPY scripts/intramfs.sh /tmp/intramfs.sh
-RUN tmp/intramfs.sh && \
+COPY scripts/initramfs.sh /tmp/initramfs.sh
+RUN tmp/initramfs.sh && \
     mkdir -p /var/lib/alternatives && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     ostree container commit

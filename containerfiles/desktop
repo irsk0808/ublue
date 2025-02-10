@@ -64,8 +64,8 @@ RUN dnf5 -y install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
 RUN dnf5 -y install /tmp/rpms/kmods/kmod-nct6687d*.rpm
 
 # Post install work
-COPY scripts/intramfs.sh /tmp/intramfs.sh
-RUN tmp/intramfs.sh && \
+COPY scripts/initramfs.sh /tmp/initramfs.sh
+RUN tmp/initramfs.sh && \
     mkdir -p /var/lib/alternatives && \
     systemctl enable performance.service && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
