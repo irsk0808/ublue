@@ -46,8 +46,7 @@ RUN find /tmp/rpms
 RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
 RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm && \
     ostree container commit
-RUN dnf5 -y install scx-scheds
-RUN systemctl enable scx && \
+RUN dnf5 -y install scx-scheds && \
     sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     ostree container commit
