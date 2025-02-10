@@ -19,7 +19,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     curl -Lo /etc/yum.repos.d/_copr_kylegospo-bazzite-multilib.repo https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite-multilib/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-bazzite-multilib-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     ostree container commit
 
-# Install kernel-bazzite & SCX
+# Install kernel/akmods & SCX
 COPY scripts/unwrap.sh /tmp/unwrap.sh
 RUN /tmp/unwrap.sh
 COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
