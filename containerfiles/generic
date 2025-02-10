@@ -13,11 +13,6 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
 
-# Update packages which often cause build fails
-COPY scripts/base.sh /tmp/base.sh
-RUN /tmp/base.sh && \
-    ostree container commit
-
 # Setup copr repos
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
@@ -47,6 +42,7 @@ RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
 RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm && \
     ostree container commit
 RUN dnf5 -y install scx-scheds && \
+    systemctl enable scx && \
     sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     ostree container commit
