@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Separate file for this part of the build process. The goal is to unify parts of the build process by making modules that are used across several builds
-rpm-ostree install \
+dnf5 -y install \
 gnome-randr-rust \
 gnome-monitor-config \
 fastfetch \
@@ -20,6 +20,19 @@ steam-devices \
 google-noto-fonts-all \
 rsms-inter-fonts \
 xhost
+
+# Media plugins
+dnf5 -y remove --no-autoremove \
+gstreamer1-plugins-ugly-free && \
+dnf5 -y install \
+svt-av1 \
+svt-vp9 \
+gstreamer1-plugin-openh264 \
+gstreamer1-vaapi \
+gstreamer-plugins-espeak \
+gstreamer1-plugins-ugly \
+mesa-vdpau-drivers.x86_64 \
+mesa-vdpau-drivers.i686
 
 # Replace mutter with package from ublue's copr (disabled till a good one pops up)
 # rpm-ostree override replace --experimental \
@@ -48,5 +61,5 @@ xorg-x11-server-Xwayland
 # Installing FirefoxPWA to save headaches later
 rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
 echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" | tee /etc/yum.repos.d/firefoxpwa.repo
-rpm-ostree --enablerepo="firefoxpwa"
-rpm-ostree install firefoxpwa
+dnf5 --enable-repo="firefoxpwa"
+dnf5 -y install firefoxpwa
