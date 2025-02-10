@@ -42,8 +42,8 @@ RUN find /tmp/kernel-rpms && \
         /tmp/kernel-rpms/kernel-devel-*.rpm
 COPY --from=akmods /rpms/ /tmp/rpms
 RUN find /tmp/rpms
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm && \
+RUN dnf5 -y install /tmp/rpms/kmods/kmod-xpadneo*.rpm
+RUN dnf5 -y install /tmp/rpms/kmods/kmod-xone*.rpm && \
     ostree container commit
 RUN dnf5 -y install scx-scheds && \
     systemctl enable scx && \
@@ -62,8 +62,8 @@ RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/h
 # Install kmods from "extra" image
 COPY --from=akmods-extra /rpms/ /tmp/rpms
 RUN find /tmp/rpms
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-nct6687d*.rpm
+RUN dnf5 -y install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
+RUN dnf5 -y install /tmp/rpms/kmods/kmod-nct6687d*.rpm
 
 # Post install work
 COPY scripts/intramfs.sh /tmp/intramfs.sh
@@ -76,7 +76,7 @@ RUN tmp/intramfs.sh && \
 # Install custom themes/extensions
 COPY scripts/extensions.sh /tmp/extensions.sh
 RUN /tmp/extensions.sh && \
-    rpm-ostree install adw-gtk3-theme && \
+    dnf5 -y install adw-gtk3-theme && \
     systemctl enable dconf-update.service && \
     ostree container commit
 
@@ -86,7 +86,7 @@ RUN /tmp/cmnpkgs.sh && \
     ostree container commit
 
 # Add extra packages
-RUN rpm-ostree install \
+RUN dnf5 -y install \
     logiops && \
     ostree container commit
 RUN systemctl enable logid && \
