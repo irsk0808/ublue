@@ -43,8 +43,8 @@ RUN find /tmp/kernel-rpms && \
         /tmp/kernel-rpms/kernel-devel-*.rpm
 COPY --from=akmods /rpms/ /tmp/rpms
 RUN find /tmp/rpms
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-xpadneo*.rpm
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-xone*.rpm && \
+RUN dnf5 -y install /tmp/rpms/kmods/kmod-xpadneo*.rpm
+RUN dnf5 -y install /tmp/rpms/kmods/kmod-xone*.rpm && \
     ostree container commit
 RUN dnf5 -y install scx-scheds && \
     systemctl enable scx && \
@@ -63,7 +63,7 @@ RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/h
 # Install kmods from "extra" image
 COPY --from=akmods-extra /rpms/ /tmp/rpms
 RUN find /tmp/rpms
-RUN rpm-ostree install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
+RUN dnf5 -y install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
 
 # Post install work
 COPY scripts/intramfs.sh /tmp/intramfs.sh
@@ -81,7 +81,7 @@ RUN /tmp/extensions_laptop.sh && \
 # Install custom themes/extensions
 COPY scripts/extensions.sh /tmp/extensions.sh
 RUN /tmp/extensions.sh && \
-    rpm-ostree install adw-gtk3-theme && \
+    dnf5 -y install adw-gtk3-theme && \
     sed -i "s/enabled-extensions=\['appindicatorsupport@rgcjonas.gmail.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'quick-settings-audio-panel@rayzeq.github.io', 'fullscreen-avoider@noobsai.github.com', 'grand-theft-focus@zalckos.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'legacyschemeautoswitcher@joshimukul29.gmail.com'\]/enabled-extensions=\['appindicatorsupport@rgcjonas.gmail.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'quick-settings-audio-panel@rayzeq.github.io', 'fullscreen-avoider@noobsai.github.com', 'grand-theft-focus@zalckos.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'legacyschemeautoswitcher@joshimukul29.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'azwallpaper@azwallpaper.gitlab.com'\]/" /usr/etc/dconf/db/local.d/01-extensions && \
     systemctl enable dconf-update.service && \
 # taking this away until gnome allows for an implementation that doesnt involve pulling my hair out    systemctl --global enable charger-connected.service && \
@@ -96,7 +96,7 @@ RUN /tmp/cmnpkgs.sh && \
     ostree container commit
 
 # Add extra packages
-RUN rpm-ostree install \
+RUN dnf -y install \
     logiops && \
     ostree container commit
 RUN systemctl enable logid && \
