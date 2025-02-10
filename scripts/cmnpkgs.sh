@@ -41,22 +41,9 @@ mesa-vdpau-drivers.i686
 # mutter-common
 
 # Pop in Bazzite patched stuff
-rpm-ostree override replace --experimental \
---from repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib \
-pipewire \
-pipewire-alsa \
-pipewire-gstreamer \
-pipewire-jack-audio-connection-kit \
-pipewire-jack-audio-connection-kit-libs \
-pipewire-libs \
-pipewire-pulseaudio \
-pipewire-utils \
-pipewire-plugin-libcamera \
-bluez \
-bluez-obexd \
-bluez-cups \
-bluez-libs \
-xorg-x11-server-Xwayland
+dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib pipewire pipewire
+dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib bluez bluez
+dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib xorg-x11-server-Xwayland xorg-x11-server-Xwayland
 
 # Installing FirefoxPWA to save headaches later
 rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
