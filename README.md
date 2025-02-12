@@ -2,7 +2,7 @@
 
 Just basic Fedora Silverblue, but it has tweaks that make it perfect for my use! It uses Universal Blue as a base, and contains some included packages and extensions, a slightly altered look, Nvidia drivers and the Bazzite kernel. I repeat, this was made for *me*. I wouldn't recommend anyone else use it, but you can if you really want to.
 
-![woah lol](screenshots/image2.png)
+![woah lol](screenshots/image3.png)
 
 Primarily customized for the computers I own, but there is an untested "generic" build.
 
