@@ -42,7 +42,7 @@ systemctl reboot
 ujust enroll-secure-boot-key
 ```
 
-To fully utilize hardware video acceleration on Firefox, set the following settings in about:config
+To fully utilize hardware video acceleration on Firefox, set the following setting in about:config
 ```
 media.ffmpeg.vaapi.enabled=true
 ```
