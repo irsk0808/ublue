@@ -45,11 +45,6 @@ ujust enroll-secure-boot-key
 To fully utilize hardware video acceleration on Firefox, set the following settings in about:config
 ```
 media.ffmpeg.vaapi.enabled=true
-media.rdd-ffmpeg.enabled=true
-gfx.x11-egl.force-enabled=true
 ```
-
-> [!NOTE]
-> 2nd and 3rd settings are only necessary if your primary GPU is from Nvidia.
 
 Apologies in advance if this is poorly put together. I'm an artist, not a programmer.
