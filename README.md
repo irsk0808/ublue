@@ -12,11 +12,11 @@ Primarily customized for the computers I own, but there is an untested "generic"
 # Installing
 - First, rebase with unsigned image:
 ```diff
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/personalblue:latest
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue:latest
 # for desktop build
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/personalblue-desktop:latest
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-desktop:latest
 # for laptop build
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/personalblue-laptop:latest
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-laptop:latest
 ```
 
 - Reboot:
@@ -26,11 +26,11 @@ systemctl reboot
 
 - Then, you can rebase to the signed image:
 ```diff
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/personalblue:latest
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue:latest
 # for desktop build
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/personalblue-desktop:latest
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-desktop:latest
 # for laptop build
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/personalblue-laptop:latest
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-laptop:latest
 ```
 - Reboot again:
 ```
