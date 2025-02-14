@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 #
-# Generated with AI, but wow is it so much cleaner than my weird ass implementation
-# This particular script exists to add extensions just for the laptop build
-# Either way, the script:
-#   - Checks if gnome-shell is installed. If not, it fails immediately
-#   - Detects your GNOME Shell major version
-#   - Maintains a local map of extension "friendly names" to numeric IDs
-#   - Uses "extension-info" from extensions.gnome.org to get the latest ZIP link
-#   - Installs each extension into /usr/share/gnome-shell/extensions/<UUID>
+# this particular script exists to add extensions just for the laptop build
 
 set -euo pipefail
 

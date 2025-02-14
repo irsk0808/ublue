@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 #
-# Generated with AI, but wow is it so much cleaner than my weird ass implementation
-# Either way, the script:
-#   - Checks if gnome-shell is installed. If not, it fails immediately
-#   - Detects your GNOME Shell major version
-#   - Maintains a local map of extension "friendly names" to numeric IDs
-#   - Uses "extension-info" from extensions.gnome.org to get the latest ZIP link
-#   - Installs each extension into /usr/share/gnome-shell/extensions/<UUID>
+# with the power of AI (sorry!), i have an extensions script that works better than my scuffed solution!
+# either way, the script:
+#   - checks gnome version
+#   - has a place where i can just put in extension name and ID, the script figures out the rest
+#   - uses "extension-info" from extensions.gnome.org to get the latest zip link
+#   - installs each extension and makes them usable
 
 set -euo pipefail
 
