@@ -25,24 +25,11 @@ RUN dnf5 -y copr enable fiftydinar/gnome-randr-rust && \
 COPY scripts/unwrap.sh /tmp/unwrap.sh
 RUN /tmp/unwrap.sh
 COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
-RUN find /tmp/kernel-rpms && \
-    dnf5 -y remove --no-autoremove \
-    kernel \
-    kernel-core \
-    kernel-modules \
-    kernel-modules-core \
-    kernel-modules-extra && \
-    dnf5 -y install \
-        /tmp/kernel-rpms/kernel-[0-9]*.rpm \
-        /tmp/kernel-rpms/kernel-core-*.rpm \
-        /tmp/kernel-rpms/kernel-modules-*.rpm \
-        /tmp/kernel-rpms/kernel-uki-virt-*.rpm \
-        /tmp/kernel-rpms/kernel-devel-*.rpm
 COPY --from=akmods /rpms/ /tmp/rpms
+RUN find /tmp/kernel-rpms
 RUN find /tmp/rpms
-RUN dnf5 -y install /tmp/rpms/kmods/kmod-xpadneo*.rpm
-RUN dnf5 -y install /tmp/rpms/kmods/kmod-xone*.rpm && \
-    ostree container commit
+COPY scripts/akmods.sh /tmp/akmods.sh
+RUN /tmp/akmods.sh
 RUN dnf5 -y install scx-scheds && \
     systemctl enable scx && \
     sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
