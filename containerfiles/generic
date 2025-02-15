@@ -21,8 +21,6 @@ COPY scripts/unwrap.sh /tmp/unwrap.sh
 RUN /tmp/unwrap.sh
 COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
 COPY --from=akmods /rpms/ /tmp/rpms
-RUN find /tmp/kernel-rpms
-RUN find /tmp/rpms
 COPY scripts/akmods.sh /tmp/akmods.sh
 RUN /tmp/akmods.sh
 RUN dnf5 -y install scx-scheds && \
