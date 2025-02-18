@@ -34,11 +34,8 @@ gstreamer1-plugins-ugly \
 mesa-vdpau-drivers.x86_64 \
 mesa-vdpau-drivers.i686
 
-# Replace mutter with package from ublue's copr (disabled till a good one pops up)
-# rpm-ostree override replace --experimental \
-# --from repo=copr:copr.fedorainfracloud.org:ublue-os:staging \
-# mutter \
-# mutter-common
+# Custom mutter with triple buffering patch
+dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:trixieua:mutter-patched mutter mutter
 
 # Pop in Bazzite patched stuff
 dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib pipewire pipewire

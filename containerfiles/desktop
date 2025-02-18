@@ -19,6 +19,7 @@ COPY sysfiles/logid/ /
 RUN dnf5 -y copr enable fiftydinar/gnome-randr-rust && \
     dnf5 -y copr enable ublue-os/staging && \
     dnf5 -y copr enable kylegospo/bazzite-multilib && \
+    dnf5 -y copr enable trixieua/mutter-patched && \
     ostree container commit
 
 # Install kernel/akmods & SCX
