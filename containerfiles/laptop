@@ -60,7 +60,7 @@ RUN tmp/initramfs.sh && \
 # Install custom themes/extensions
 COPY scripts/extensions_laptop.sh /tmp/extensions_laptop.sh
 COPY scripts/extensions.sh /tmp/extensions.sh
-RUN /tmp/extensions_laptop.sh %% \
+RUN /tmp/extensions_laptop.sh && \
     /tmp/extensions.sh && \
     dnf5 -y install adw-gtk3-theme && \
     systemctl enable dconf-update.service && \
