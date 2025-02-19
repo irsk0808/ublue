@@ -16,11 +16,9 @@ COPY sysfiles/nvidia/ /
 COPY sysfiles/logid/ /
 
 # Setup copr repos
-RUN dnf5 -y copr enable fiftydinar/gnome-randr-rust && \
-    dnf5 -y copr enable ublue-os/staging && \
-    dnf5 -y copr enable kylegospo/bazzite-multilib && \
+COPY scripts/copr.sh /tmp/copr.sh
+RUN /tmp/copr.sh && \
     dnf5 -y copr enable antiderivative/libfprint-tod-goodix-0.0.9 && \
-    dnf5 -y copr enable trixieua/mutter-patched && \
     ostree container commit
 
 # Install kernel/akmods & SCX
