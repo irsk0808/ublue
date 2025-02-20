@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -eoux pipefail
+
 # Modularizing the Copr instructions here too to make my life easier
 dnf5 -y copr enable fiftydinar/gnome-randr-rust
 dnf5 -y copr enable ublue-os/staging
