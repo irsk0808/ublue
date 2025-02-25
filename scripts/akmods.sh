@@ -15,6 +15,8 @@ dnf5 -y install \
     /tmp/kernel-rpms/kernel-modules-*.rpm \
     /tmp/kernel-rpms/kernel-uki-virt-*.rpm \
     /tmp/kernel-rpms/kernel-devel-*.rpm
+
+dnf5 -y install scx-scheds && systemctl enable scx
     
 echo "Installing kmod packages!"
 

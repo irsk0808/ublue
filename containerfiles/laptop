@@ -28,9 +28,7 @@ COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
 COPY --from=akmods /rpms/ /tmp/rpms
 COPY scripts/akmods.sh /tmp/akmods.sh
 RUN /tmp/akmods.sh
-RUN dnf5 -y install scx-scheds && \
-    systemctl enable scx && \
-    sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
+RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     ostree container commit
 
