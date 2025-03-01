@@ -39,6 +39,7 @@ declare -A EXTENSIONS=(
   [legacyscheme-auto-switcher]=4998
   [light-style]=6198
   [quick-settings-audio-panel]=5940
+  [clipboard-indicator]=779
 )
 
 ###############################################################################
