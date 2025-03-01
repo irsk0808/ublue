@@ -1,8 +1,7 @@
 # Main arguments
-ARG FEDORA_MAJOR_VERSION=41
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
-ARG SOURCE_TAG="${FEDORA_MAJOR_VERSION}"
+ARG SOURCE_TAG="41"
 
 # Import main packages
 FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
