@@ -19,7 +19,8 @@ powertop \
 steam-devices \
 google-noto-fonts-all \
 rsms-inter-fonts \
-xhost
+xhost \
+adw-gtk3-theme
 
 # Media plugins
 dnf5 -y remove --no-autoremove \

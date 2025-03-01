@@ -31,42 +31,40 @@ RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_rusty/" /etc/default/s
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     ostree container commit
 
-# Install nvidia driver
-COPY --from=akmods-nvidia-open /rpms /tmp/akmods-rpms
-RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
-    chmod +x /tmp/nvidia-install.sh && \
-    FEDORA_MAJOR_VERSION=${FEDORA_MAJOR_VERSION} IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
-    rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
-    ln -s libnvidia-ml.so.1 /usr/lib64/libnvidia-ml.so && \
-    ostree container commit
-
 # Install kmods from "extra" image
 COPY --from=akmods-extra /rpms/ /tmp/rpms
 RUN find /tmp/rpms
 RUN dnf5 -y install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
 RUN dnf5 -y install /tmp/rpms/kmods/kmod-nct6687d*.rpm
 
-# Post install work
-COPY scripts/initramfs.sh /tmp/initramfs.sh
-RUN tmp/initramfs.sh && \
-    mkdir -p /var/lib/alternatives && \
-    systemctl enable performance.service && \
-    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
-    ostree container commit
-
-# Install custom themes/extensions
-COPY scripts/extensions.sh /tmp/extensions.sh
-RUN /tmp/extensions.sh && \
-    dnf5 -y install adw-gtk3-theme && \
-    systemctl enable dconf-update.service && \
-    ostree container commit
-
 # Install shared set of packages
 COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
 RUN /tmp/cmnpkgs.sh && \
     ostree container commit
 
-# Add extra packages
+# Install custom extensions
+COPY scripts/extensions.sh /tmp/extensions.sh
+RUN /tmp/extensions.sh && \
+    systemctl enable dconf-update.service && \
+    ostree container commit
+
+# Install nvidia driver
+COPY --from=akmods-nvidia-open /rpms /tmp/akmods-rpms
+RUN curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh && \
+    chmod +x /tmp/nvidia-install.sh && \
+    IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
+    rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
+    ln -s libnvidia-ml.so.1 /usr/lib64/libnvidia-ml.so && \
+    ostree container commit
+
+# Initramfs & misc changes
+COPY scripts/initramfs.sh /tmp/initramfs.sh
+RUN tmp/initramfs.sh && \
+    systemctl enable performance.service && \
+    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
+    ostree container commit
+
+# Final changes
 RUN dnf5 -y install \
     logiops && \
     ostree container commit

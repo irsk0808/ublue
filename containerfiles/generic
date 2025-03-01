@@ -26,21 +26,19 @@ RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/sc
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     ostree container commit
 
-# Post install work
-COPY scripts/initramfs.sh /tmp/initramfs.sh
-RUN tmp/initramfs.sh && \
-    mkdir -p /var/lib/alternatives && \
-    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
-    ostree container commit
-
-# Install custom themes/extensions
-COPY scripts/extensions.sh /tmp/extensions.sh
-RUN /tmp/extensions.sh && \
-    dnf5 -y install adw-gtk3-theme && \
-    systemctl enable dconf-update.service && \
-    ostree container commit
-
 # Install shared set of packages
 COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
 RUN /tmp/cmnpkgs.sh && \
+    ostree container commit
+
+# Install custom extensions
+COPY scripts/extensions.sh /tmp/extensions.sh
+RUN /tmp/extensions.sh && \
+    systemctl enable dconf-update.service && \
+    ostree container commit
+
+# Initramfs & misc changes
+COPY scripts/initramfs.sh /tmp/initramfs.sh
+RUN tmp/initramfs.sh && \
+    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     ostree container commit
