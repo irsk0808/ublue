@@ -20,7 +20,8 @@ steam-devices \
 google-noto-fonts-all \
 rsms-inter-fonts \
 xhost \
-adw-gtk3-theme
+adw-gtk3-theme \
+firewall-config
 
 # Media plugins
 dnf5 -y remove --no-autoremove \
