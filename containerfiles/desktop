@@ -32,7 +32,6 @@ RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_rusty/" /etc/default/s
 
 # Install kmods from "extra" image
 COPY --from=akmods-extra /rpms/ /tmp/rpms
-RUN find /tmp/rpms
 RUN dnf5 -y install /tmp/rpms/kmods/kmod-ryzen-smu*.rpm
 RUN dnf5 -y install /tmp/rpms/kmods/kmod-nct6687d*.rpm
 
