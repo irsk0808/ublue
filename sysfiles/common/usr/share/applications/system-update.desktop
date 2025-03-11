@@ -5,4 +5,4 @@ Comment=Update System, Flatpaks, Distrobox containers, and more
 Icon=/usr/share/ublue-os/Tux.svg
 Categories=ConsoleOnly;System;
 Terminal=true
-Exec=/usr/bin/bash -c "ujust update; read -p 'Press Enter to close this window'"
+Exec=/usr/bin/bash -c "rpm-ostree update; read -p 'Press Enter to close this window'"
