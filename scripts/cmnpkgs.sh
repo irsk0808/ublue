@@ -24,8 +24,6 @@ adw-gtk3-theme \
 firewall-config
 
 # Media plugins
-#dnf5 -y remove --no-autoremove \
-#gstreamer1-plugins-ugly-free && \
 dnf5 -y install \
 svt-av1 \
 svt-vp9 \
