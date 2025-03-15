@@ -43,6 +43,7 @@ dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib bl
 dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:kylegospo:bazzite-multilib xorg-x11-server-Xwayland xorg-x11-server-Xwayland
 
 # Installing FirefoxPWA to save headaches later
-rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey && \ echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" | tee /etc/yum.repos.d/firefoxpwa.repo
+rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
+echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" | tee /etc/yum.repos.d/firefoxpwa.repo
 dnf5 --enable-repo="firefoxpwa"
 dnf5 -y install firefoxpwa
