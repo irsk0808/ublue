@@ -7,20 +7,16 @@ gnome-monitor-config \
 fastfetch \
 cowsay \
 grub-customizer \
-gnome-tweaks \
-distrobox \
 yt-dlp \
 zlib \
 xcb-util-cursor \
 i2c-tools \
 libnsl \
-podman \
 powertop \
 steam-devices \
 google-noto-fonts-all \
 rsms-inter-fonts \
 xhost \
-adw-gtk3-theme \
 firewall-config
 
 # Media plugins
