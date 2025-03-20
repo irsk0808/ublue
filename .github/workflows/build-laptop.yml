@@ -1,5 +1,5 @@
 ---
-name: build-ublue-custom-laptop
+name: Build ublue-laptop
 on:
   pull_request:
     branches:

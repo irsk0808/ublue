@@ -1,5 +1,5 @@
 ---
-name: Build ISOs
+name: Build ublue-desktop ISO
 
 on:
   workflow_dispatch:

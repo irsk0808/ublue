@@ -1,5 +1,5 @@
 ---
-name: build-ublue-custom-desktop
+name: Build ublue-desktop
 on:
   pull_request:
     branches:
