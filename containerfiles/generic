@@ -2,42 +2,30 @@
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="41"
+FROM scratch AS ctx
+COPY scripts /
 
 # Import main packages
 FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
+# Import system files
 COPY sysfiles/common/ /
 
-# Setup copr repos
-COPY scripts/copr.sh /tmp/copr.sh
-RUN /tmp/copr.sh && \
-    ostree container commit
+# Scripts
+RUN --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
+    --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    /ctx/copr && \
+    /ctx/unwrap && \
+    /ctx/akmods && \
+    /ctx/cmnpkgs && \
+    /ctx/extensions && \
+    /ctx/initramfs && \
+    /ctx/cleanup
 
-# Install kernel/akmods & SCX
-COPY scripts/unwrap.sh /tmp/unwrap.sh
-RUN /tmp/unwrap.sh
-COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
-COPY --from=akmods /rpms/ /tmp/rpms
-COPY scripts/akmods.sh /tmp/akmods.sh
-RUN /tmp/akmods.sh
+# Finishing touches
 RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
-    ostree container commit
-
-# Install shared set of packages
-COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
-RUN /tmp/cmnpkgs.sh && \
-    ostree container commit
-
-# Install custom extensions
-COPY scripts/extensions.sh /tmp/extensions.sh
-RUN /tmp/extensions.sh && \
-    systemctl enable dconf-update.service && \
-    ostree container commit
-
-# Initramfs & misc changes
-COPY scripts/initramfs.sh /tmp/initramfs.sh
-RUN tmp/initramfs.sh && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     ostree container commit
