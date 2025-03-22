@@ -2,10 +2,10 @@
 ARG SOURCE_IMAGE="silverblue"
 ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="41"
-
-# Import main packages
 FROM scratch AS ctx
 COPY scripts /
+
+# Import main packages
 FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
