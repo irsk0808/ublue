@@ -15,12 +15,13 @@ COPY sysfiles/common/ /
 RUN --mount=type=bind,from=ctx,src=/,dst=/ctx \
     --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/akmods-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
-    /ctx/copr.sh && \
-    /ctx/unwrap.sh && \
-    /ctx/akmods.sh && \
-    /ctx/cmnpkgs.sh && \
-    /ctx/extensions.sh && \
-    /ctx/initramfs.sh && \
+    /ctx/copr && \
+    /ctx/unwrap && \
+    /ctx/akmods && \
+    /ctx/cmnpkgs && \
+    /ctx/extensions && \
+    /ctx/initramfs && \
+    /ctx/cleanup
 
 # Misc
 RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
