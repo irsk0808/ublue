@@ -12,12 +12,12 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY sysfiles/common/ /
 
 # Scripts
-RUN --mount=type=tmpfs,dst=/tmp \
-    --mount=type=cache,dst=/var/cache/libdnf5 \
+RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=cache,dst=/var/cache/rpm-ostree \
     --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/akmods-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
-    --mount=type=bind,from=ctx,src=/,dst=/ctx \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
     /ctx/copr && \
     /ctx/unwrap && \
     /ctx/akmods && \
