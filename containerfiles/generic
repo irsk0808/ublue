@@ -14,7 +14,7 @@ COPY sysfiles/common/ /
 # Scripts
 RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=bind,from=ctx,src=/,dst=/ctx \
-    --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/akmods-rpms \
+    --mount=type=bind,from=akmods,src=/rpms/ublue-os,dst=/tmp/akmods-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
     /ctx/copr.sh && \
     /ctx/unwrap.sh && \
