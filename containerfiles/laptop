@@ -17,8 +17,7 @@ COPY sysfiles/laptop/ /
 COPY sysfiles/logid/ /
 
 # Scripts
-RUN --mount=type=cache,dst=/var/cache/libdnf5 \
-    --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
+RUN --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
     --mount=type=bind,from=akmods-extra,src=/rpms,dst=/tmp/akmods-extra-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
     --mount=type=bind,from=akmods-nvidia-open,src=/rpms,dst=/tmp/akmods-rpms \
