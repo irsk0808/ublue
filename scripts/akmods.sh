@@ -20,5 +20,5 @@ dnf5 -y install scx-scheds && systemctl enable scx
     
 echo "Installing kmod packages!"
 
-dnf5 -y install /tmp/rpms/kmods/kmod-xpadneo*.rpm
-dnf5 -y install /tmp/rpms/kmods/kmod-xone*.rpm
+dnf5 -y install /tmp/akmods-rpms/kmods/kmod-xpadneo*.rpm
+dnf5 -y install /tmp/akmods-rpms/kmods/kmod-xone*.rpm
