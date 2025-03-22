@@ -5,22 +5,30 @@ ARG SOURCE_TAG="41"
 
 # Import main packages
 FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
+FROM scratch AS ctx
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 COPY sysfiles/common/ /
 
-# Setup copr repos
-COPY scripts/copr.sh /tmp/copr.sh
-RUN /tmp/copr.sh && \
-    ostree container commit
+# Scripts
+RUN --mount=type=bind,from=ctx,src/,dst=/ctx \
+    --mount=type=bind,from=akmods,src=/rpms/ublue-os,dst=/tmp/akmods-rpms \
+    --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms && \
+    /ctx/scripts/copr.sh && \
+    /ctx/scripts/unwrap.sh && \
+    /ctx/sctipts/akmods.sh && \
+
+#COPY scripts/copr.sh /tmp/copr.sh
+#RUN /tmp/copr.sh && \
+#    ostree container commit
 
 # Install kernel/akmods & SCX
-COPY scripts/unwrap.sh /tmp/unwrap.sh
-RUN /tmp/unwrap.sh
-COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
-COPY --from=akmods /rpms/ /tmp/rpms
-COPY scripts/akmods.sh /tmp/akmods.sh
-RUN /tmp/akmods.sh
+#COPY scripts/unwrap.sh /tmp/unwrap.sh
+#RUN /tmp/unwrap.sh
+#COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
+#COPY --from=akmods /rpms/ /tmp/rpms
+#COPY scripts/akmods.sh /tmp/akmods.sh
+#RUN /tmp/akmods.sh
 RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     ostree container commit
