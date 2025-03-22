@@ -24,7 +24,7 @@ on:
       - './Justfile'
 
 env:
-  IMAGE_REGISTRY: "ghcr.io/${{ github.repository }}"
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository }}-testing"
   DEFAULT_TAG: "latest"
 
 concurrency:
