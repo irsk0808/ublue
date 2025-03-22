@@ -17,13 +17,11 @@ COPY sysfiles/desktop/ /
 COPY sysfiles/logid/ /
 
 # Scripts
-RUN --mount=type=cache,dst=/var/cache/libdnf5 \
-    --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
+RUN --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
     --mount=type=bind,from=akmods-extra,src=/rpms,dst=/tmp/akmods-extra-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
     --mount=type=bind,from=akmods-nvidia-open,src=/rpms,dst=/tmp/akmods-rpms \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
-    --mount=type=tmpfs,dst=/tmp \
     /ctx/copr && \
     /ctx/unwrap && \
     /ctx/akmods && \
@@ -46,7 +44,6 @@ RUN systemctl enable logid && \
 # Finishing touches
 RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_rusty/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
-    systemctl enable dconf-update.service && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     systemctl enable performance.service && \
     ostree container commit

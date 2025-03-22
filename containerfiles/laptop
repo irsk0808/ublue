@@ -19,8 +19,8 @@ COPY sysfiles/logid/ /
 # Scripts
 RUN --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
     --mount=type=bind,from=akmods-extra,src=/rpms,dst=/tmp/akmods-extra-rpms \
-    --mount=type=bind,from=akmods-nvidia-open,src=/rpms,dst=/tmp/akmods-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
+    --mount=type=bind,from=akmods-nvidia-open,src=/rpms,dst=/tmp/akmods-rpms \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/copr && \
     	dnf5 -y copr enable antiderivative/libfprint-tod-goodix-0.0.9 && \
@@ -57,7 +57,6 @@ RUN dnf5 -y remove --no-autoremove \
 #Finishing touches
 RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
-    systemctl enable dconf-update.service && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     systemctl enable powersave.service && \
 # taking this away until gnome allows for an implementation that doesnt involve pulling my hair out    systemctl --global enable charger-connected.service && \

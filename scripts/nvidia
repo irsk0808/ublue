@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -eoux pipefail
+
 echo "Installing Nvidia driver!"
 
 curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/hwe/main/nvidia-install.sh

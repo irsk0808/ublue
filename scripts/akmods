@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -eoux pipefail
+
 echo "Installing Bazzite Kernel!"
 
 dnf5 -y remove --no-autoremove \
