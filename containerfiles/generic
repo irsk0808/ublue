@@ -12,41 +12,20 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY sysfiles/common/ /
 
 # Scripts
-RUN --mount=type=bind,from=ctx,src=/,dst=/ctx \
+RUN --mount=type=cache,dst=/var/cache/libdnf5 \
+    --mount=type=bind,from=ctx,src=/,dst=/ctx \
     --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/akmods-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
     /ctx/copr.sh && \
     /ctx/unwrap.sh && \
     /ctx/akmods.sh && \
+    /ctx/cmnpkgs.sh && \
+    /ctx/extensions.sh && \
+    /ctx/initramfs.sh && \
 
-#COPY scripts/copr.sh /tmp/copr.sh
-#RUN /tmp/copr.sh && \
-#    ostree container commit
-
-# Install kernel/akmods & SCX
-#COPY scripts/unwrap.sh /tmp/unwrap.sh
-#RUN /tmp/unwrap.sh
-#COPY --from=akmods /kernel-rpms/ /tmp/kernel-rpms
-#COPY --from=akmods /rpms/ /tmp/rpms
-#COPY scripts/akmods.sh /tmp/akmods.sh
-#RUN /tmp/akmods.sh
+# Misc
 RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
-    ostree container commit
-
-# Install shared set of packages
-COPY scripts/cmnpkgs.sh /tmp/cmnpkgs.sh
-RUN /tmp/cmnpkgs.sh && \
-    ostree container commit
-
-# Install custom extensions
-COPY scripts/extensions.sh /tmp/extensions.sh
-RUN /tmp/extensions.sh && \
     systemctl enable dconf-update.service && \
-    ostree container commit
-
-# Initramfs & misc changes
-COPY scripts/initramfs.sh /tmp/initramfs.sh
-RUN tmp/initramfs.sh && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     ostree container commit
