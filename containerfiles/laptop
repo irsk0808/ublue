@@ -11,6 +11,7 @@ FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
 FROM ghcr.io/ublue-os/akmods-extra:bazzite-${SOURCE_TAG} AS akmods-extra
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
+# Import system files
 COPY sysfiles/common/ /
 COPY sysfiles/laptop/ /
 COPY sysfiles/logid/ /
