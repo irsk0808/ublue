@@ -43,15 +43,9 @@ RUN systemctl enable logid && \
     ostree container commit
 
 # Goodix fingerprint scanner
-RUN dnf5 -y remove --no-autoremove \
-    libfprint \
-    fprintd \
-    fprintd-pam && \
-    dnf5 -y install \
-    libfprint-tod libfprint-tod-goodix && \
-    dnf5 -y install \
-    fprintd \
-    fprintd-pam && \
+RUN dnf5 -y remove --no-autoremove libfprint fprintd fprintd-pam && \
+    dnf5 -y install libfprint-tod libfprint-tod-goodix && \
+    dnf5 -y install fprintd fprintd-pam && \
     ostree container commit
     
 #Finishing touches
