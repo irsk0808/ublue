@@ -40,6 +40,7 @@ declare -A EXTENSIONS=(
   [light-style]=6198
   [quick-settings-audio-panel]=5940
   [clipboard-indicator]=779
+  [rounded-window-corners-reborn]=7048
 )
 
 ###############################################################################
