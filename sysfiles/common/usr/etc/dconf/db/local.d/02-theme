@@ -10,11 +10,12 @@ font-name='Inter 10'
 [org/gnome/shell/extensions/blur-my-shell/panel]
 force-light-text=true
 
-# [org/gnome/shell/extensions/rounded-window-corners-reborn]
-# border-color=(0.5, 0.5, 0.5, 0.5)
-# border-width=2
+[org/gnome/shell/extensions/rounded-window-corners-reborn]
+border-color=(0.5, 0.5, 0.5, 0.5)
+border-width=1
 # focused-shadow={'vertical_offset': 14, 'horizontal_offset': 0, 'blur_offset': 38, 'spread_radius': 8, 'opacity': 85}
 # unfocused-shadow={'vertical_offset': 8, 'horizontal_offset': 0, 'blur_offset': 24, 'spread_radius': 4, 'opacity': 80}
+global-rounded-corner-settings={'padding': <{'left': <uint32 0>, 'right': <uint32 0>, 'top': <uint32 0>, 'bottom': <uint32 0>}>}
 # global-rounded-corner-settings={'padding': <{'left': <uint32 1>, 'right': <uint32 1>, 'top': <uint32 1>, 'bottom': <uint32 1>}>, 'keep_rounded_corners': <{'maximized': <true>, 'fullscreen': <false>}>, 'border_radius': <uint32 12>, 'smoothing': <uint32 0>}
 # skip-libadwaita-app=false
 

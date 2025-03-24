@@ -13,7 +13,7 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY sysfiles/common/ /
 
 # Scripts
-RUN --mount=type=cache,dst=/var/cache
+RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
