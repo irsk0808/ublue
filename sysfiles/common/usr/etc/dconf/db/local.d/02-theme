@@ -11,7 +11,7 @@ font-name='Inter 10'
 force-light-text=true
 
 [org/gnome/shell/extensions/rounded-window-corners-reborn]
-border-color=(0.5, 0.5, 0.5, 0.5)
+#border-color=(0.5, 0.5, 0.5, 0.5)
 border-width=1
 # focused-shadow={'vertical_offset': 14, 'horizontal_offset': 0, 'blur_offset': 38, 'spread_radius': 8, 'opacity': 85}
 # unfocused-shadow={'vertical_offset': 8, 'horizontal_offset': 0, 'blur_offset': 24, 'spread_radius': 4, 'opacity': 80}
