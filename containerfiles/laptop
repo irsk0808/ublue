@@ -18,6 +18,7 @@ COPY sysfiles/logid/ /
 
 # Scripts
 RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
     --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
     --mount=type=bind,from=akmods-extra,src=/rpms,dst=/tmp/akmods-extra-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
