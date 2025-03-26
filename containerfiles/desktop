@@ -48,3 +48,4 @@ RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_rusty/" /etc/default/s
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
     systemctl enable performance.service && \
     ostree container commit
+RUN bootc container lint

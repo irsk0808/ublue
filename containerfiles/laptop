@@ -59,4 +59,5 @@ RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/sc
 #    systemctl --global enable rrwakeup.service && \
 #    systemctl enable suspendsys.service && \
     ostree container commit
+RUN bootc container lint
 
