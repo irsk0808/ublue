@@ -20,6 +20,7 @@ firewall-config
 
 # Media plugins
 dnf5 -y install \
+ffmpeg \
 svt-av1 \
 svt-vp9 \
 gstreamer1-plugin-openh264 \
