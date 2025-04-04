@@ -1,0 +1,14 @@
+[org.gnome.mutter]
+experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
+
+[org.gnome.nautilus.preferences]
+show-create-link=true
+
+[org.gnome.desktop.wm.preferences] 
+button-layout='appmenu:minimize,maximize,close'
+
+[org.gnome.shell.keybindings]
+show-screenshot-ui=['<Shift><Super>s']
+
+[org.gnome.desktop.interface]
+gtk-enable-primary-paste=false

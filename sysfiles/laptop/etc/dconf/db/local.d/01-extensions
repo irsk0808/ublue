@@ -1,3 +1,0 @@
-[org/gnome/shell]
-enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'quick-settings-audio-panel@rayzeq.github.io', 'fullscreen-avoider@noobsai.github.com', 'grand-theft-focus@zalckos.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'legacyschemeautoswitcher@joshimukul29.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'azwallpaper@azwallpaper.gitlab.com', 'clipboard-indicator@tudmotu.com']
-disabled-extensions=['background-logo@fedorahosted.org']
