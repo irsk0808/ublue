@@ -132,6 +132,6 @@ done
 #systemctl enable dconf-update.service
 mkdir -p "/usr/share/ublue-os/dconfs/"
 cp "/usr/share/glib-2.0/schemas/ublue-"*".gschema.override" "/usr/share/ublue-os/dconfs/"
-dconf-override-converter to-dconf "/usr/share/ublue-os/dconfs/ublue-"*".gschema.override
+dconf-override-converter to-dconf "/usr/share/ublue-os/dconfs/ublue-"*".gschema.override"
 glib-compile-schemas /usr/share/glib-2.0/schemas &>/dev/null
 echo "All extensions installed successfully!"
