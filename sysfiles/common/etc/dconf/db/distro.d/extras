@@ -5,3 +5,6 @@ clock-format='24h'
 
 [org/gnome/shell/extensions/clipboard-indicator]
 clear-on-boot=true
+
+[org/gnome/gnome-session]
+logout-prompt=false
