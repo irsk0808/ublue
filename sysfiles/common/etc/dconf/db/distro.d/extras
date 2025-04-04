@@ -8,3 +8,8 @@ clear-on-boot=true
 
 [org/gnome/gnome-session]
 logout-prompt=false
+
+[org/gnome/shell/extensions/hidetopbar]
+enable-intellihide=false
+hot-corner=true
+mouse-sensitive=true

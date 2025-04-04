@@ -18,8 +18,3 @@ force-light-text=true
 # global-rounded-corner-settings={'padding': <{'left': <uint32 0>, 'right': <uint32 0>, 'top': <uint32 0>, 'bottom': <uint32 0>}>}
 # global-rounded-corner-settings={'padding': <{'left': <uint32 1>, 'right': <uint32 1>, 'top': <uint32 1>, 'bottom': <uint32 1>}>, 'keep_rounded_corners': <{'maximized': <true>, 'fullscreen': <false>}>, 'border_radius': <uint32 12>, 'smoothing': <uint32 0>}
 # skip-libadwaita-app=false
-
-[org.gnome.shell.extensions.hidetopbar]
-enable-intellihide=false
-hot-corner=true
-mouse-sensitive=true
