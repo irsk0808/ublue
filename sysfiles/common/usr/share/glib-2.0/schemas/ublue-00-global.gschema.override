@@ -1,21 +1,21 @@
-[org/gnome/gnome-session]
+[org.gnome.gnome-session]
 logout-prompt=false
 
-[org/gnome/mutter]
+[org.gnome.mutter]
 experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
 
-[org/gnome/nautilus/preferences]
+[org.gnome.nautilus.preferences]
 show-create-link=true
 
-[org/gnome/desktop/wm/preferences] 
+[org.gnome.desktop.wm.preferences] 
 button-layout='appmenu:minimize,maximize,close'
 
-[org/gnome/shell/keybindings]
+[org.gnome.shell.keybindings]
 show-screenshot-ui=['<Shift><Super>s']
 
-[org/gnome/desktop/interface]
+[org.gnome.desktop.interface]
 clock-format='24h'
 gtk-enable-primary-paste=false
 
-[org/gnome/shell/extensions/clipboard-indicator]
+[org.gnome.shell.extensions.clipboard-indicator]
 clear-on-boot=true

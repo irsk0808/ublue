@@ -1,16 +1,16 @@
-[org/gnome/desktop/interface]
+[org.gnome.desktop.interface]
 color-scheme='prefer-dark'
 gtk-theme='adw-gtk3-dark'
 document-font-name='Inter 10'
 font-name='Inter 10'
 
-# [org/gnome/shell/extensions/user-theme]
+# [org.gnome.shell.extensions.user-theme]
 # name='custom-shell'
 
-[org/gnome/shell/extensions/blur-my-shell/panel]
+[org.gnome.shell.extensions.blur-my-shell.panel]
 force-light-text=true
 
-# [org/gnome/shell/extensions/rounded-window-corners-reborn]
+# [org.gnome.shell.extensions.rounded-window-corners-reborn]
 # border-color=(0.5, 0.5, 0.5, 0.5)
 # border-width=1
 # focused-shadow={'vertical_offset': 14, 'horizontal_offset': 0, 'blur_offset': 38, #'spread_radius': 8, 'opacity': 85}
@@ -19,7 +19,7 @@ force-light-text=true
 # global-rounded-corner-settings={'padding': <{'left': <uint32 1>, 'right': <uint32 1>, 'top': <uint32 1>, 'bottom': <uint32 1>}>, 'keep_rounded_corners': <{'maximized': <true>, 'fullscreen': <false>}>, 'border_radius': <uint32 12>, 'smoothing': <uint32 0>}
 # skip-libadwaita-app=false
 
-[org/gnome/shell/extensions/hidetopbar]
+[org.gnome.shell.extensions.hidetopbar]
 enable-intellihide=false
 hot-corner=true
 mouse-sensitive=true
