@@ -5,7 +5,7 @@ dnf5 -y install \
 gnome-randr-rust \
 fastfetch \
 cowsay \
-grub-customizer \
+#grub-customizer \
 yt-dlp \
 zlib \
 xcb-util-cursor \
