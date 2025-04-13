@@ -7,7 +7,7 @@ fastfetch \
 cowsay \
 #grub-customizer \
 #yt-dlp \
-#zlib \
+zlib \
 xcb-util-cursor \
 i2c-tools \
 libnsl \
