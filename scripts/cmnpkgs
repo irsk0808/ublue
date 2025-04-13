@@ -6,7 +6,7 @@ gnome-randr-rust \
 fastfetch \
 cowsay \
 #grub-customizer \
-#yt-dlp \
+yt-dlp \
 zlib \
 xcb-util-cursor \
 i2c-tools \
