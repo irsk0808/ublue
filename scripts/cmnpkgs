@@ -38,7 +38,8 @@ for toswap in linux-firmware netronome-firmware libertas-firmware atheros-firmwa
 dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite $toswap $toswap; \
 done && unset -v toswap
 
-for toswap in pipewire bluez xorg-x11-server-Xwayland; do \
+#for toswap in pipewire bluez xorg-x11-server-Xwayland; do \
+for toswap in pipewire bluez; do \
 dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite-multilib $toswap $toswap; \
 done && unset -v toswap
 
