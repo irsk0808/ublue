@@ -29,8 +29,8 @@ gstreamer1-plugins-ugly \
 mesa-vdpau-drivers.x86_64 \
 mesa-vdpau-drivers.i686
 
-# Custom mutter with triple buffering patch (COMMENTED OUT FOR GNOME 48)
-# dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:trixieua:mutter-patched mutter mutter
+# Custom mutter with triple buffering patch
+dnf5 -y swap --repo=copr:copr.fedorainfracloud.org:trixieua:mutter-patched mutter mutter
 
 # Pop in Bazzite patched stuff
 for toswap in linux-firmware netronome-firmware libertas-firmware atheros-firmware realtek-firmware tiwilink-firmware cirrus-audio-firmware linux-firmware-whence iwlwifi-dvm-firmware iwlwifi-mvm-firmware amd-ucode-firmware qcom-firmware mt7xxx-firmware liquidio-firmware nxpwireless-firmware intel-vsc-firmware nvidia-gpu-firmware intel-audio-firmware amd-gpu-firmware iwlegacy-firmware intel-gpu-firmware mlxsw_spectrum-firmware qed-firmware mrvlprestera-firmware brcmfmac-firmware dvb-firmware; do \
