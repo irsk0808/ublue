@@ -3,8 +3,7 @@ Description=Actions on Charger Connected
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/gnome-randr modify -m 2880x1800@120.001 eDP-2
+ExecStart=/usr/bin/gdctl set -P -L --primary --scale 2 -M eDP-1 -m 2880x1800@120.001
 
 [Install]
 WantedBy=default.target
-#WantedBy=multi-user.target
