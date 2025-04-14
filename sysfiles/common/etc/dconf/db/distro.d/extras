@@ -13,3 +13,6 @@ logout-prompt=false
 enable-intellihide=false
 hot-corner=true
 mouse-sensitive=true
+
+[org/gnome/shell/extensions/blur-my-shell/panel]
+force-light-text=true
