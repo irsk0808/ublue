@@ -58,7 +58,7 @@ RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/sc
     systemctl enable powersave.service && \
     systemctl --global enable charger-connected.service && \
     systemctl --global enable charger-disconnected.service && \
-    systemctl --gloval enable rrboot.service && \
+    systemctl --global enable rrboot.service && \
     ostree container commit
 RUN bootc container lint
 
