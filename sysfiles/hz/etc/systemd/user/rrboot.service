@@ -1,0 +1,11 @@
+[Unit]
+Description=Check charging status and change refresh rate after login
+After=default.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 3
+ExecStart=/bin/bash -c 'grep -q 1 "/sys/class/power_supply/ADP0/online" && /usr/bin/gdctl set -P -L --primary --scale 2 -M eDP-1 -m 2880x1800@120.001 || /usr/bin/gdctl set -P -L --primary --scale 2 -M eDP-1 -m 2880x1800@60.001'
+
+[Install]
+WantedBy=default.target
