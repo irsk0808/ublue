@@ -4,9 +4,7 @@
 dnf5 -y install \
 fastfetch \
 cowsay \
-#grub-customizer \
 yt-dlp \
-zlib \
 xcb-util-cursor \
 i2c-tools \
 libnsl \
@@ -19,7 +17,6 @@ firewall-config
 
 # Media plugins
 dnf5 -y install \
-ffmpeg \
 svt-av1 \
 svt-vp9 \
 gstreamer1-plugin-openh264 \
