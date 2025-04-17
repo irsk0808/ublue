@@ -31,7 +31,6 @@ echo "Detected GNOME Shell major version: $GNOME_VERSION"
 # 2) Local map: "friendly_name" => numeric ID on extensions.gnome.org
 ###############################################################################
 declare -A EXTENSIONS=(
-  [blur-my-shell]=3193
   [user-theme]=19
   [appindicator]=615
   [fullscreen-avoider]=4362
