@@ -32,7 +32,6 @@ echo "Detected GNOME Shell major version: $GNOME_VERSION"
 ###############################################################################
 declare -A EXTENSIONS=(
   [user-theme]=19
-  [appindicator]=615
   [fullscreen-avoider]=4362
   [grand-theft-focus]=5410
   [legacyscheme-auto-switcher]=4998

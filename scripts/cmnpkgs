@@ -13,7 +13,8 @@ steam-devices \
 google-noto-fonts-all \
 rsms-inter-fonts \
 xhost \
-firewall-config
+firewall-config \
+gnome-shell-extension-appindicator
 
 # Media plugins
 dnf5 -y install \
