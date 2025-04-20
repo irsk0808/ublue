@@ -15,6 +15,7 @@ rsms-inter-fonts \
 xhost \
 firewall-config \
 gnome-shell-extension-appindicator \
+glfw \
 glfw-devel \
 stb-devel
 
