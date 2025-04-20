@@ -14,7 +14,8 @@ google-noto-fonts-all \
 rsms-inter-fonts \
 xhost \
 firewall-config \
-gnome-shell-extension-appindicator
+gnome-shell-extension-appindicator \
+glfw-devel
 
 # Media plugins
 dnf5 -y install \
