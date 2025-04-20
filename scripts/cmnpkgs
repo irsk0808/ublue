@@ -15,7 +15,8 @@ rsms-inter-fonts \
 xhost \
 firewall-config \
 gnome-shell-extension-appindicator \
-glfw-devel
+glfw-devel \
+stb-devel
 
 # Media plugins
 dnf5 -y install \
