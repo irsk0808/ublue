@@ -27,6 +27,7 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/copr && \
     	dnf5 -y copr enable antiderivative/libfprint-tod-goodix-0.0.9 && \
+	dnf5 -y copr enable hhd-dev/hhd && \
     /ctx/unwrap && \
     /ctx/akmods && \
     	dnf5 -y install /tmp/akmods-extra-rpms/kmods/kmod-ryzen-smu*.rpm && \
@@ -40,6 +41,9 @@ RUN --mount=type=cache,dst=/var/cache \
 # Extra packages
 RUN dnf5 -y install \
     logiops && \
+    hhd && \
+    hhd-ui && \
+    adjustor && \
     ostree container commit
 RUN systemctl enable logid && \
     systemctl enable logidrestart.service && \
