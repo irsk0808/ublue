@@ -40,9 +40,9 @@ RUN --mount=type=cache,dst=/var/cache \
 
 # Extra packages
 RUN dnf5 -y install \
-    logiops && \
-    hhd && \
-    hhd-ui && \
+    logiops \
+    hhd \
+    hhd-ui \
     adjustor && \
     ostree container commit
 RUN systemctl enable logid && \
