@@ -34,11 +34,6 @@ gstreamer1-plugins-ugly \
 mesa-vdpau-drivers.x86_64 \
 mesa-vdpau-drivers.i686
 
-# Custom mutter with triple buffering patch
-for toswap in mutter gdm; do \
-dnf5 -y swap --repo copr:copr.fedorainfracloud.org:trixieua:mutter-patched $toswap $toswap; \
-done && unset -v toswap
-
 # Pop in Bazzite patched stuff
 declare -A toswap=( \
     ["copr:copr.fedorainfracloud.org:bazzite-org:bazzite"]="wireplumber bootc" \
