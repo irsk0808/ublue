@@ -10,7 +10,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/unwrap && \
     echo "blacklist amdgpu" | tee -a /etc/modprobe.d/blacklist.conf && \
     /ctx/initramfs && \
-    /ctx/cleanup
     
 #Finishing touches
 RUN ostree container commit && \
