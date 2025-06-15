@@ -4,19 +4,18 @@ Just basic Fedora Silverblue, but it has tweaks that make it perfect for my use!
 
 ![woah lol](screenshots/image4.png)
 
-Primarily customized for the computers I own, but there is an untested "generic" build.
+Primarily customized for my machine, but there is an untested "generic" build.
 
-- Desktop: Ryzen 9 5900x + RTX 3070
-- Laptop: Lenovo Legion 5 Slim 14", Ryzen 7 7840HS + RTX 4060 Max-Q
+My machine in question: Lenovo Legion 5 Slim 14", Ryzen 7 7840HS + RTX 4060 Max-Q
 
 # Installing
 - First, rebase with unsigned image:
 ```diff
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue:latest
-# for desktop build
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-desktop:latest
-# for laptop build
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-laptop:latest
+# for legion
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-iris:latest
+# for legion with amdgpu blocked
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-iris-noamd:latest
 ```
 
 - Reboot:
@@ -27,10 +26,10 @@ systemctl reboot
 - Then, you can rebase to the signed image:
 ```diff
 rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue:latest
-# for desktop build
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-desktop:latest
-# for laptop build
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-laptop:latest
+# for legion
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-iris:latest
+# for legion with amdgpu blocked
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-iris-noamd:latest
 ```
 - Reboot again:
 ```
