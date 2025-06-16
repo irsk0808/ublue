@@ -18,6 +18,7 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
     --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
     /ctx/copr && \
     /ctx/unwrap && \
     /ctx/akmods && \
