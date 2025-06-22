@@ -7,7 +7,7 @@ Just basic Fedora Silverblue, but it has tweaks that make it perfect for my use!
 Primarily customized for my machines, but there is an untested "generic" build.
 
 My machines in question: 
-- B650, Ryzen 9900x + RTX 5060TI 16GB
+- B650, Ryzen 9 9900x + RTX 5060TI 16GB
 - Lenovo Legion 5 Slim 14", Ryzen 7 7840HS + RTX 4060 Max-Q
 
 # Installing
