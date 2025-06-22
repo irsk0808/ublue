@@ -23,3 +23,4 @@ dnf5 -y install scx-scheds && systemctl enable scx
 echo "Installing kmod packages!"
 
 dnf5 -y install /tmp/kmods-rpms/kmods/kmod-xone*.rpm
+dnf5 -y install /tmp/akmods-extra-rpms/kmods/kmod-ryzen-smu*.rpm

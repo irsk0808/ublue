@@ -30,7 +30,6 @@ RUN --mount=type=cache,dst=/var/cache \
 	dnf5 -y copr enable sunwire/envycontrol && \
     /ctx/unwrap && \
     /ctx/akmods && \
-    	dnf5 -y install /tmp/akmods-extra-rpms/kmods/kmod-ryzen-smu*.rpm && \
     /ctx/cmnpkgs && \
     /ctx/extensions_laptop && \
     /ctx/extensions && \

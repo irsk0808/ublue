@@ -1,0 +1,64 @@
+# Main arguments
+ARG SOURCE_IMAGE="silverblue"
+ARG SOURCE_SUFFIX="-main"
+ARG SOURCE_TAG="42"
+FROM scratch AS ctx
+COPY scripts /
+
+# Import main packages
+FROM ghcr.io/ublue-os/akmods-nvidia-open:bazzite-${SOURCE_TAG} AS akmods-nvidia-open
+FROM ghcr.io/ublue-os/akmods:bazzite-${SOURCE_TAG} AS akmods
+FROM ghcr.io/ublue-os/akmods-extra:bazzite-${SOURCE_TAG} AS akmods-extra
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
+
+# Import system files
+COPY sysfiles/common/ /
+COPY sysfiles/desktop/ /
+COPY sysfiles/logid/ /
+
+# Scripts
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=akmods,src=/rpms,dst=/tmp/kmods-rpms \
+    --mount=type=bind,from=akmods-extra,src=/rpms,dst=/tmp/akmods-extra-rpms \
+    --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    /ctx/copr && \
+    /ctx/unwrap && \
+    /ctx/akmods && \
+    /ctx/cmnpkgs && \
+    /ctx/extensions && \
+    /ctx/initramfs && \
+    /ctx/cleanup
+
+# Nvidia
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=akmods-nvidia-open,src=/rpms,dst=/tmp/akmods-rpms \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    curl -Lo /tmp/nvidia-install.sh https://raw.githubusercontent.com/ublue-os/main/main/build_files/nvidia-install.sh && \
+    chmod +x /tmp/nvidia-install.sh && \
+    IMAGE_NAME="${SOURCE_IMAGE}${SOURCE_SUFFIX}" /tmp/nvidia-install.sh && \
+    rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json && \
+    ln -s libnvidia-ml.so.1 /usr/lib64/libnvidia-ml.so && \
+    /ctx/initramfs && \
+    /ctx/cleanup
+
+# Extra packages
+RUN dnf5 -y install \
+    logiops && \
+    ostree container commit
+RUN systemctl enable logid && \
+    systemctl enable logidrestart.service && \
+    ostree container commit
+    
+#Finishing touches
+RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
+    curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
+    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedora Linux (Ublue)"/' /usr/lib/os-release && \
+    systemctl enable performance.service && \
+    ostree container commit
+RUN bootc container lint
+

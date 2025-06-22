@@ -1,5 +1,5 @@
 ---
-name: Build ublue-iris-noamd
+name: Build ublue-desktop
 on:
   pull_request:
     branches:
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 env:
-  MY_IMAGE_NAME: "${{ github.event.repository.name }}-iris-noamd"  # the name of the image produced by this build, matches repo names
+  MY_IMAGE_NAME: "${{ github.event.repository.name }}-desktop"  # the name of the image produced by this build, matches repo names
   MY_IMAGE_DESC: "My Customized Universal Blue Image"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
 
@@ -95,7 +95,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: |
-            ./containerfiles/iris-noamd
+            ./containerfiles/desktop
           # Postfix image name with -custom to make it a little more descriptive
           # Syntax: https://docs.github.com/en/actions/learn-github-actions/expressions#format
           image: ${{ env.MY_IMAGE_NAME }}
