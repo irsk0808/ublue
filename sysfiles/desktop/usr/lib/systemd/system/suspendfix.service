@@ -1,0 +1,7 @@
+[Unit]
+Description=Fix suspend with Gigabyte board
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/suspendfix.sh
+[Install]
+WantedBy=multi-user.target
