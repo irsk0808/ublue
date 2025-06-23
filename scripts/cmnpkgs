@@ -17,7 +17,8 @@ firewall-config \
 gnome-shell-extension-appindicator \
 glfw \
 glfw-devel \
-stb-devel
+stb-devel \
+openssl-libs
 
 # Media plugins
 dnf5 -y install \
