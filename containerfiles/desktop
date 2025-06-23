@@ -58,6 +58,7 @@ RUN systemctl enable logid && \
 RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
     curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
     sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedror (Ublue)"/' /usr/lib/os-release && \
+    systemctl enable suspendfix.service && \
     ostree container commit
 RUN bootc container lint
 
