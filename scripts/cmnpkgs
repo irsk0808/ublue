@@ -33,7 +33,8 @@ gstreamer1-plugins-bad \
 gstreamer1-plugins-ugly \
 mesa-va-drivers.i686 \
 mesa-vdpau-drivers.x86_64 \
-mesa-vdpau-drivers.i686
+mesa-vdpau-drivers.i686 \
+libva
 
 # Pop in Bazzite patched stuff
 declare -A toswap=( \
