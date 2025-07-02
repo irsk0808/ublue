@@ -25,9 +25,13 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/copr && \
+    dnf5 -y copr enable deltacopy/darkly && \
+    dnf5 -y copr enable matinlotfali/KDE-Rounded-Corners && \
     /ctx/unwrap && \
     /ctx/akmods && \
     /ctx/cmnpkgs && \
+    dnf5 -y install darkly && \
+    dnf5 -y install kwin-effect-roundcorners && \
     /ctx/initramfs && \
     /ctx/cleanup
 
