@@ -32,8 +32,6 @@ RUN --mount=type=cache,dst=/var/cache \
     /ctx/cmnpkgs && \
     dnf5 -y install darkly && \
     dnf5 -y install kwin-effect-roundcorners && \
-    dnf5 -y remove --no-autoremove qt6-qtwayland && \
-    dnf5 -y install qt6-qtwayland && \
     /ctx/initramfs && \
     /ctx/cleanup
 
