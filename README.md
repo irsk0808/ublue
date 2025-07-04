@@ -15,9 +15,9 @@ My machines in question:
 ```diff
 rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue:latest
 # for desktop
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-desktop
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-desktop:latest
 # for laptop
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-laptop
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/irsk0808/ublue-laptop:latest
 ```
 
 - Reboot:
@@ -29,9 +29,9 @@ systemctl reboot
 ```diff
 rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue:latest
 # for desktop
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-desktop
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-desktop:latest
 # for laptop
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-laptop
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/irsk0808/ublue-laptop:latest
 ```
 - Reboot again:
 ```
