@@ -4,7 +4,6 @@
 dnf5 -y install \
 fastfetch \
 cowsay \
-yt-dlp \
 xcb-util-cursor \
 i2c-tools \
 libnsl \
