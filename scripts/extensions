@@ -127,6 +127,7 @@ for ext_name in "${!EXTENSIONS[@]}"; do
   fetch_and_install_extension "$pk"
 done
 
+dnf5 -y install gnome-shell-extension-appindicator
 systemctl enable dconf-update.service
 mkdir -p "/usr/share/ublue-os/dconfs/"
 cp "/usr/share/glib-2.0/schemas/ublue-"*".gschema.override" "/usr/share/ublue-os/dconfs/"
