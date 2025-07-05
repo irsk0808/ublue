@@ -27,6 +27,8 @@ RUN --mount=type=cache,dst=/var/cache \
     /ctx/copr && \
     dnf5 -y copr enable deltacopy/darkly && \
     dnf5 -y copr enable matinlotfali/KDE-Rounded-Corners && \
+    dnf5 -y swap --repo=updates qt6-qtwayland qt6-qtwayland && \
+    dnf5 -y remove gnome-shell-extension-appindicator && \
     /ctx/unwrap && \
     /ctx/akmods && \
     /ctx/cmnpkgs && \
