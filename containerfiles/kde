@@ -35,7 +35,6 @@ RUN --mount=type=cache,dst=/var/cache \
     dnf5 -y install kwin-x11 && \
     dnf5 -y install kwin-effect-roundcorners && \
     dnf5 -y swap --repo=updates qt6-qtwayland qt6-qtwayland && \
-    dnf5 -y remove gnome-shell-extension-appindicator && \
     dnf5 -y install webapp-manager && \
     /ctx/initramfs && \
     /ctx/cleanup
