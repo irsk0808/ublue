@@ -32,6 +32,7 @@ RUN --mount=type=cache,dst=/var/cache \
     /ctx/akmods && \
     /ctx/cmnpkgs && \
     dnf5 -y install darkly && \
+    dnf5 -y install kwin-x11 && \
     dnf5 -y install kwin-effect-roundcorners && \
     dnf5 -y swap --repo=updates qt6-qtwayland qt6-qtwayland && \
     dnf5 -y remove gnome-shell-extension-appindicator && \
