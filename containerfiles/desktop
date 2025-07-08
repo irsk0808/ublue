@@ -30,6 +30,7 @@ RUN --mount=type=cache,dst=/var/cache \
     /ctx/cmnpkgs && \
     /ctx/extensions && \
     /ctx/initramfs && \
+    /ctx/misc && \
     /ctx/cleanup
 
 # Nvidia
@@ -55,11 +56,8 @@ RUN systemctl enable logid && \
     ostree container commit
     
 #Finishing touches
-RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
-    curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
-    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedror (Ublue)"/' /usr/lib/os-release && \
+RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_rusty/" /etc/default/scx && \
     systemctl enable suspendfix.service && \
-    systemctl disable rpm-ostreed-automatic.timer && \
     ostree container commit
 RUN bootc container lint
 

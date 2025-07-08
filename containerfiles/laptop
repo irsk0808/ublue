@@ -34,6 +34,7 @@ RUN --mount=type=cache,dst=/var/cache \
     /ctx/extensions_laptop && \
     /ctx/extensions && \
     /ctx/initramfs && \
+    /ctx/misc && \
     /ctx/cleanup
 
 # Nvidia
@@ -66,13 +67,9 @@ RUN dnf5 -y remove --no-autoremove libfprint fprintd fprintd-pam && \
     ostree container commit
     
 #Finishing touches
-RUN sed -i "s/SCX_SCHEDULER=scx_bpfland/SCX_SCHEDULER=scx_lavd/" /etc/default/scx && \
-    curl -Lo /usr/lib/sysctl.d/99-bore-scheduler.conf https://github.com/CachyOS/CachyOS-Settings/raw/master/usr/lib/sysctl.d/99-bore-scheduler.conf && \
-    sed -i '/^PRETTY_NAME/s/.*/PRETTY_NAME="Fedror (Ublue)"/' /usr/lib/os-release && \
-#    systemctl --global enable charger-connected.service && \
+#RUN systemctl --global enable charger-connected.service && \
 #    systemctl --global enable charger-disconnected.service && \
 #    systemctl --global enable rrboot.service && \
-    systemctl disable rpm-ostreed-automatic.timer && \
-    ostree container commit
+#    ostree container commit
 RUN bootc container lint
 
