@@ -31,10 +31,6 @@ RUN --mount=type=cache,dst=/var/cache \
     /ctx/unwrap && \
     /ctx/akmods && \
     /ctx/cmnpkgs && \
-    dnf5 -y install darkly && \
-    dnf5 -y install kwin-x11 && \
-    dnf5 -y install kwin-effect-roundcorners && \
-    dnf5 -y install webapp-manager && \
     /ctx/initramfs && \
     /ctx/misc && \
     /ctx/cleanup
@@ -55,7 +51,11 @@ RUN --mount=type=cache,dst=/var/cache \
 
 # Extra packages
 RUN dnf5 -y install \
-    logiops && \
+    logiops \
+    darkly \
+    kwin-x11 \
+    kwin-effect-roundcorners \
+    webapp-manager && \
     ostree container commit
 RUN systemctl enable logid && \
     systemctl enable logidrestart.service && \
