@@ -53,7 +53,6 @@ RUN --mount=type=cache,dst=/var/cache \
 RUN dnf5 -y install \
     logiops \
     darkly \
-    kwin-x11 \
     kwin-effect-roundcorners \
     webapp-manager && \
     ostree container commit
