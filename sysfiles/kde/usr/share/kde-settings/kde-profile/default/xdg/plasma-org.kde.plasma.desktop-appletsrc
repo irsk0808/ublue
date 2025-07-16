@@ -1,0 +1,14 @@
+[Containments][Applets][21]
+immutability=1
+plugin=org.kde.plasma.digitalclock
+
+[Containments][Applets][21][Configuration][Appearance]
+autoFontAndSize=false
+boldText=true
+dateDisplayFormat=BesideTime
+dateFormat=custom
+fontFamily=Adwaita Sans
+fontSize=12
+fontStyleName=SemiBold
+fontWeight=600
+use24hFormat=2
