@@ -1,0 +1,14 @@
+[General]
+fixed=Adwaita Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+font=Adwaita Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+menuFont=Adwaita Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+smallestReadableFont=Adwaita Sans,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+toolBarFont=Adwaita Sans,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[WM]
+activeFont=Adwaita Sans,10,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,SemiBold
+
+[KDE]
+AnimationDurationFactor=1
+LookAndFeelPackage=org.kde.breezedark.desktop
+widgetStyle=Darkly
