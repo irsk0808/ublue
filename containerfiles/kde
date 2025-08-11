@@ -28,6 +28,7 @@ RUN --mount=type=cache,dst=/var/cache \
     dnf5 -y copr enable deltacopy/darkly && \
     dnf5 -y copr enable matinlotfali/KDE-Rounded-Corners && \
     dnf5 -y copr enable bazzite-org/webapp-manager && \
+    dnf5 -y copr enable hazel-bunny/ricing && \
     /ctx/unwrap && \
     /ctx/akmods && \
     /ctx/cmnpkgs && \
@@ -54,6 +55,7 @@ RUN dnf5 -y install \
     logiops \
     darkly \
     kwin-effect-roundcorners \
+    kwin-effects-forceblur \
     webapp-manager && \
     ostree container commit
 RUN systemctl enable logid && \
