@@ -11,4 +11,8 @@ activeFont=Adwaita Sans,10,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,SemiBold
 [KDE]
 AnimationDurationFactor=1
 LookAndFeelPackage=org.kde.breezedark.desktop
+ColorScheme=BreezeDark
 widgetStyle=Darkly
+
+[Sounds]
+Theme=freedesktop
