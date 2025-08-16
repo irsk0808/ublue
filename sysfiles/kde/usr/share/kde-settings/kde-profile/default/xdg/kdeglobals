@@ -16,3 +16,25 @@ widgetStyle=Darkly
 
 [Sounds]
 Theme=freedesktop
+
+[PlasmaViews]
+floating=0
+floatingApplets=1
+panelOpacity=2
+
+[PlasmaViews][Defaults]
+thickness=32
+
+[Theme]
+name=customtheme
+
+[Containments][Applets][21][Configuration][Appearance]
+autoFontAndSize=false
+boldText=true
+dateDisplayFormat=BesideTime
+dateFormat=custom
+fontFamily=Adwaita Sans
+fontSize=12
+fontStyleName=SemiBold
+fontWeight=600
+use24hFormat=2
