@@ -16,6 +16,7 @@ COPY sysfiles/common/ /
 COPY sysfiles/laptop/ /
 # COPY sysfiles/hz/ /
 COPY sysfiles/logid/ /
+COPY sysfiles/nvidia/ /
 
 # Scripts
 RUN --mount=type=cache,dst=/var/cache \

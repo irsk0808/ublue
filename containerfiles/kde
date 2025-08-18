@@ -15,6 +15,7 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY sysfiles/kde/ /
 COPY sysfiles/desktop/ /
 COPY sysfiles/logid/ /
+COPY sysfiles/nvidia/ /
 
 # Scripts
 RUN --mount=type=cache,dst=/var/cache \
