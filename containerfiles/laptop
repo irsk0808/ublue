@@ -67,10 +67,11 @@ RUN dnf5 -y remove --no-autoremove libfprint fprintd fprintd-pam && \
     dnf5 -y install fprintd fprintd-pam && \
     ostree container commit
     
-#Finishing touches
-#RUN systemctl --global enable charger-connected.service && \
+# Finishing touches
+RUN systemctl enable powersave.service && \
+#    systemctl --global enable charger-connected.service && \
 #    systemctl --global enable charger-disconnected.service && \
 #    systemctl --global enable rrboot.service && \
-#    ostree container commit
+    ostree container commit
 RUN bootc container lint
 
